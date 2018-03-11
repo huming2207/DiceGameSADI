@@ -1,13 +1,13 @@
 package model;
 
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
+
+import java.io.IOException;
+import java.util.Collection;
+import java.util.logging.*;
 
 /**
  * 
@@ -21,10 +21,34 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 {
 	private Logger logger = Logger.getLogger("assignment1");
 
+
 	public GameEngineCallbackImpl()
 	{
 		// FINE shows rolling output, INFO only shows result
 		logger.setLevel(Level.FINE);
+
+        // Workaround for "Level.FINE" level issue
+        // Ref: https://stackoverflow.com/questions/15758685/how-to-write-logs-in-text-file-when-using-java-util-logging-logger
+        //      https://stackoverflow.com/questions/6315699/why-are-the-level-fine-logging-messages-not-showing
+
+        // Firstly, disable parent handlers.
+        logger.setUseParentHandlers(false);
+
+        // Then, add our own handler.
+        Handler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.FINEST);
+        logger.addHandler(consoleHandler);
+
+        // By the way we also need to register a file handler...
+        try {
+            FileHandler fileHandler = new FileHandler("OutputTrace.txt");
+            SimpleFormatter formatter = new SimpleFormatter();
+            fileHandler.setFormatter(formatter);
+            logger.addHandler(fileHandler);
+        } catch (IOException | SecurityException exception) {
+            logger.log(Level.SEVERE, "Failed to register FileHandler, I will not save logs to file then!");
+            exception.printStackTrace();
+        }
 	}
 
 	@Override
@@ -37,7 +61,8 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 	public void result(Player player, DicePair result, GameEngine gameEngine)
 	{
 		// final results logged at Level.INFO
-		logger.log(Level.FINE, String.format("%s: *RESULT* %s", player.getPlayerName(), result.toString()));
+        logger.log(Level.INFO, String.format("%s: *RESULT* %s", player.getPlayerName(), result.toString()));
+        player.setRollResult(result);
 	}
 
 	@Override
@@ -49,7 +74,7 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 	@Override
 	public void houseResult(DicePair result, GameEngine gameEngine)
 	{
-        logger.log(Level.FINE, String.format("House: ROLLING %s", result.toString()));
+        logger.log(Level.FINE, String.format("House: *RESULT* %s", result.toString()));
 	}
 
     @Override
@@ -63,6 +88,11 @@ public class GameEngineCallbackImpl implements GameEngineCallback
             if(finalResult < finalHouseResult) {
                 player.setPoints(player.getPoints() - player.getBet());
             }
+
+            logger.log(Level.INFO, String.format("Player: id=%s, name=%s, points=%d",
+                    player.getPlayerId(),
+                    player.getPlayerName(),
+                    player.getPoints()));
         }
     }
 
