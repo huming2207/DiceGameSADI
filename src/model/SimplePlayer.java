@@ -22,7 +22,7 @@ public class SimplePlayer implements Player
     @Override
     public String getPlayerName()
     {
-        return playerName;
+        return this.playerName;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class SimplePlayer implements Player
     @Override
     public int getPoints()
     {
-        return points;
+        return this.points;
     }
 
     @Override
@@ -46,25 +46,30 @@ public class SimplePlayer implements Player
     @Override
     public String getPlayerId()
     {
-        return playerId;
+        return this.playerId;
     }
 
     @Override
     public boolean placeBet(int bet)
     {
-        return false;
+        if(getBet() < bet) {
+            return false;
+        } else {
+            this.bet = bet;
+            return true;
+        }
     }
 
     @Override
     public int getBet()
     {
-        return 0;
+        return this.bet;
     }
 
     @Override
     public DicePair getRollResult()
     {
-        return dicePair;
+        return this.dicePair;
     }
 
     @Override
