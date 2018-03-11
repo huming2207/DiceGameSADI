@@ -75,10 +75,10 @@ public interface GameEngineCallback
      *
      * It logs the final results between players and house. Then modify the marks for each player.
      *
-     * @param players
-     *          the collection of players
+     * @param currentPlayer
+     *          the current player to be logged
      * @param houseResult
      *          the house's result
      */
-	public void displayResult(Collection<Player> players, DicePair houseResult);
+	public void displayResult(Player currentPlayer, DicePair houseResult);
 }

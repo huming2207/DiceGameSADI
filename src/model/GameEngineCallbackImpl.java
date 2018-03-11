@@ -78,22 +78,12 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 	}
 
     @Override
-    public void displayResult(Collection<Player> players, DicePair houseResult)
+    public void displayResult(Player currentPlayer, DicePair houseResult)
     {
-        for(Player player : players) {
-            int finalResult  = player.getRollResult().getDice1() + player.getRollResult().getDice2();
-            int finalHouseResult = houseResult.getDice1() + houseResult.getDice2();
-
-            // Condition: if this player's dice pair result is lower than the house result, then do the deduction
-            if(finalResult < finalHouseResult) {
-                player.setPoints(player.getPoints() - player.getBet());
-            }
-
-            logger.log(Level.INFO, String.format("Player: id=%s, name=%s, points=%d",
-                    player.getPlayerId(),
-                    player.getPlayerName(),
-                    player.getPoints()));
-        }
+        logger.log(Level.INFO, String.format("Player: id=%s, name=%s, points=%d",
+                currentPlayer.getPlayerId(),
+                currentPlayer.getPlayerName(),
+                currentPlayer.getPoints()));
     }
 
 }

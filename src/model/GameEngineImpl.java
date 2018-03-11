@@ -64,9 +64,24 @@ public class GameEngineImpl implements GameEngine
             }
         }
 
+        // Generate the house result
         DicePair dicePair = new DicePairImpl();
         callback.houseResult(dicePair, this);
-        callback.displayResult(playerList, dicePair);
+
+        // Iterate the players and print for comparing with the house
+        for(Player player : playerList) {
+            int finalResult  = player.getRollResult().getDice1() + player.getRollResult().getDice2();
+            int finalHouseResult = dicePair.getDice1() + dicePair.getDice2();
+
+            // Condition: if this player's dice pair result is lower than the house result, then do the deduction
+            if(finalResult < finalHouseResult) {
+                player.setPoints(player.getPoints() - player.getBet());
+            }
+
+            // Print the result
+            callback.displayResult(player, dicePair);
+        }
+
     }
 
     @Override
