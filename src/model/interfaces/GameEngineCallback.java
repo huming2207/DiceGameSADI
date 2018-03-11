@@ -1,5 +1,7 @@
 package model.interfaces;
 
+import java.util.Collection;
+
 /**
  * Assignment interface for SADI to notify client of GameEngine events for display/logging e.g.
  * ongoing dice roll, final roll result for both players and house
@@ -67,4 +69,16 @@ public interface GameEngineCallback
 	 * @see model.interfaces.GameEngine
 	 */
 	public void houseResult(DicePair result, GameEngine gameEngine);
+
+    /**
+     * This method is mentioned in the sample OutputTrace.txt but didn't implemented in this interface.
+     *
+     * It logs the final results between players and house. Then modify the marks for each player.
+     *
+     * @param players
+     *          the collection of players
+     * @param houseResult
+     *          the house's result
+     */
+	public void displayResult(Collection<Player> players, DicePair houseResult);
 }

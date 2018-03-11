@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,31 +30,40 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 	@Override
 	public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
 	{
-		// intermediate results logged at Level.FINE
-		logger.log(Level.FINE, "Intermediate data to log .. String.format() is good here!");
-		// TO DO: complete this method to log results
+       logger.log(Level.FINE, String.format("%s: ROLLING %s", player.getPlayerName(), dicePair.toString()));
 	}
 
 	@Override
 	public void result(Player player, DicePair result, GameEngine gameEngine)
 	{
 		// final results logged at Level.INFO
-		logger.log(Level.INFO, "Result data to log .. String.format() is good here!");
-		// TO DO: complete this method to log results
+		logger.log(Level.FINE, String.format("%s: *RESULT* %s", player.getPlayerName(), result.toString()));
 	}
 
 	@Override
 	public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine)
 	{
-
+        logger.log(Level.FINE, String.format("House: ROLLING %s", dicePair.toString()));
 	}
 
 	@Override
 	public void houseResult(DicePair result, GameEngine gameEngine)
 	{
-
+        logger.log(Level.FINE, String.format("House: ROLLING %s", result.toString()));
 	}
 
-	// TO DO: complete the GameEngineCallback interface implementation
+    @Override
+    public void displayResult(Collection<Player> players, DicePair houseResult)
+    {
+        for(Player player : players) {
+            int finalResult  = player.getRollResult().getDice1() + player.getRollResult().getDice2();
+            int finalHouseResult = houseResult.getDice1() + houseResult.getDice2();
+
+            // Condition: if this player's dice pair result is lower than the house result, then do the deduction
+            if(finalResult < finalHouseResult) {
+                player.setPoints(player.getPoints() - player.getBet());
+            }
+        }
+    }
 
 }
