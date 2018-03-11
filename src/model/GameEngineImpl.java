@@ -10,13 +10,7 @@ import java.util.Collection;
 public class GameEngineImpl implements GameEngine
 {
     private Collection<Player> playerList;
-    private Collection<GameEngineCallback> callbackList;
-
-    public GameEngineImpl()
-    {
-        this.playerList = new ArrayList<>();
-        this.callbackList = new ArrayList<>();
-    }
+    private GameEngineCallback callback;
 
     @Override
     public boolean placeBet(Player player, int bet)
@@ -61,13 +55,18 @@ public class GameEngineImpl implements GameEngine
     @Override
     public void addGameEngineCallback(GameEngineCallback gameEngineCallback)
     {
-        callbackList.add(gameEngineCallback);
+        callback = gameEngineCallback;
     }
 
     @Override
     public boolean removeGameEngineCallback(GameEngineCallback gameEngineCallback)
     {
-        return callbackList.remove(gameEngineCallback);
+        if(callback == null) {
+            return false;
+        } else {
+            callback = null;
+            return true;
+        }
     }
 
     @Override
