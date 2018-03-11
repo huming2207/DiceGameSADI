@@ -2,6 +2,7 @@
 ### Intellij IDEA force ignore
 .idea
 DiceGameSADI.iml
+OutputTrace.txt
 
 ### Java template
 # Compiled class file
