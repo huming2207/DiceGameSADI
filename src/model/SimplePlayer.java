@@ -11,11 +11,11 @@ public class SimplePlayer implements Player
     private int points;
     private DicePair dicePair;
 
-    public SimplePlayer(String playerId, String playerName, int bet)
+    public SimplePlayer(String playerId, String playerName, int points)
     {
         this.playerId = playerId;
         this.playerName = playerName;
-        this.bet = bet;
+        this.points = points;
         this.dicePair = new DicePairImpl();
     }
 
@@ -52,7 +52,7 @@ public class SimplePlayer implements Player
     @Override
     public boolean placeBet(int bet)
     {
-        if(getBet() < bet) {
+        if (getPoints() < bet) {
             return false;
         } else {
             this.bet = bet;
