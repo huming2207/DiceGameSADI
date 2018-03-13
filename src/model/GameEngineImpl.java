@@ -66,9 +66,9 @@ public class GameEngineImpl implements GameEngine
 
         // Generate the house result
         DicePair dicePair = new DicePairImpl();
-        callback.houseResult(dicePair, this);
 
-        // Iterate the players and print for comparing with the house
+
+        // Iterate the players and print for comparing with the house to decide who win or who lose
         for(Player player : playerList) {
             int finalResult  = player.getRollResult().getDice1() + player.getRollResult().getDice2();
             int finalHouseResult = dicePair.getDice1() + dicePair.getDice2();
@@ -77,10 +77,10 @@ public class GameEngineImpl implements GameEngine
             if(finalResult < finalHouseResult) {
                 player.setPoints(player.getPoints() - player.getBet());
             }
-
-            // Print the result
-            callback.displayResult(player, dicePair);
         }
+
+        // Log the final result AFTER the comparison
+        callback.houseResult(dicePair, this);
 
     }
 

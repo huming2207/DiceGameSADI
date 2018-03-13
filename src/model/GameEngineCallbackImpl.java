@@ -75,10 +75,13 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 	public void houseResult(DicePair result, GameEngine gameEngine)
 	{
         logger.log(Level.FINE, String.format("House: *RESULT* %s", result.toString()));
+
+        for(Player player : gameEngine.getAllPlayers()) {
+            displayFinalResult(player);
+        }
 	}
 
-    @Override
-    public void displayResult(Player currentPlayer, DicePair houseResult)
+    private void displayFinalResult(Player currentPlayer)
     {
         logger.log(Level.INFO, String.format("Player: id=%s, name=%s, points=%d",
                 currentPlayer.getPlayerId(),

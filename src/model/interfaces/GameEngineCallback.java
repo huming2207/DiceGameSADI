@@ -69,16 +69,4 @@ public interface GameEngineCallback
 	 * @see model.interfaces.GameEngine
 	 */
 	public void houseResult(DicePair result, GameEngine gameEngine);
-
-    /**
-     * This method is mentioned in the sample OutputTrace.txt but didn't implemented in this interface.
-     *
-     * It logs the final results between players and house. Then modify the marks for each player.
-     *
-     * @param currentPlayer
-     *          the current player to be logged
-     * @param houseResult
-     *          the house's result
-     */
-	public void displayResult(Player currentPlayer, DicePair houseResult);
 }
