@@ -6,7 +6,6 @@ import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.logging.*;
 
 /**
