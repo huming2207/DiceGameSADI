@@ -45,15 +45,15 @@ public class GameEngineImpl implements GameEngine
                         new DicePairImpl(getRandomDiceFace(), getRandomDiceFace(), GameEngine.NUM_FACES), this);
             }
 
-            // Increase next delay time
-            delay += delayIncrement;
-
             // Start to delay
             try {
                 TimeUnit.MILLISECONDS.sleep(delay);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            // Increase next delay time
+            delay += delayIncrement;
         }
 
         // Iterate all callbacks and print out the results
@@ -79,15 +79,15 @@ public class GameEngineImpl implements GameEngine
                         new DicePairImpl(getRandomDiceFace(), getRandomDiceFace(), GameEngine.NUM_FACES), this);
             }
 
-            // Increase next delay time
-            delay += delayIncrement;
-
             // Start to delay
             try {
                 TimeUnit.MILLISECONDS.sleep(delay);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            // Increase next delay time
+            delay += delayIncrement;
         }
 
         // Generate the house result
