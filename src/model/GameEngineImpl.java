@@ -150,7 +150,7 @@ public class GameEngineImpl implements GameEngine
     @Override
     public Collection<Player> getAllPlayers()
     {
-        return playerList;
+        return new ArrayList<>(playerList);
     }
 
     private int getRandomDiceFace()
