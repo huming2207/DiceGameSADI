@@ -58,8 +58,9 @@ public class GameEngineImpl implements GameEngine
 
         // Iterate all callbacks and print out the results
         for(GameEngineCallback callback : callbackList) {
-            callback.result(player,
-                    new DicePairImpl(getRandomDiceFace(), getRandomDiceFace(), GameEngine.NUM_FACES), this);
+            DicePair dicePair = new DicePairImpl(getRandomDiceFace(), getRandomDiceFace(), GameEngine.NUM_FACES);
+            callback.result(player, dicePair, this);
+            player.setRollResult(dicePair);
         }
     }
 
@@ -101,6 +102,8 @@ public class GameEngineImpl implements GameEngine
             // Condition: if this player's dice pair result is lower than the house result, then do the deduction
             if(finalResult < finalHouseResult) {
                 player.setPoints(player.getPoints() - player.getBet());
+            } else if(finalResult > finalHouseResult) {
+                player.setPoints(player.getPoints() + player.getBet());
             }
         }
 

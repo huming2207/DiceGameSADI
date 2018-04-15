@@ -61,7 +61,6 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 	{
 		// final results logged at Level.INFO
         logger.log(Level.INFO, String.format("%s: *RESULT* %s", player.getPlayerName(), result.toString()));
-        player.setRollResult(result);
 	}
 
 	@Override
