@@ -7,35 +7,48 @@ import model.interfaces.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class GameEngineImpl implements GameEngine
 {
     private Collection<Player> playerList;
-    private GameEngineCallback callback;
+    private Collection<GameEngineCallback> callbackList;
 
     public GameEngineImpl()
     {
-        playerList = new ArrayList<>();
+        this.playerList = new ArrayList<>();
+        this.callbackList = new ArrayList<>();
     }
 
     @Override
     public boolean placeBet(Player player, int bet)
     {
+        if(player == null || bet < 1) return false;
         return player.placeBet(bet);
     }
 
     @Override
     public void rollPlayer(Player player, int initialDelay, int finalDelay, int delayIncrement)
     {
-        int rollCount = (finalDelay - initialDelay) / delayIncrement;
+        int rollCount = (finalDelay - (initialDelay - 1)) / delayIncrement;
         int delay = initialDelay;
 
         if (rollCount < 1) rollCount = 1; // Just in case for someone input something wrong...
 
         for (int count = 0; count < rollCount; count += 1) {
-            callback.intermediateResult(player, new DicePairImpl(), this);
+
+            // Iterate all callbacks and print out the results
+            for(GameEngineCallback callback : callbackList) {
+                callback.intermediateResult(player,
+                        new DicePairImpl(getRandomDiceFace(), getRandomDiceFace(), GameEngine.NUM_FACES), this);
+            }
+
+            // Increase next delay time
             delay += delayIncrement;
+
+            // Start to delay
             try {
                 TimeUnit.MILLISECONDS.sleep(delay);
             } catch (InterruptedException e) {
@@ -43,20 +56,32 @@ public class GameEngineImpl implements GameEngine
             }
         }
 
-        callback.result(player, new DicePairImpl(), this);
+        // Iterate all callbacks and print out the results
+        for(GameEngineCallback callback : callbackList) {
+            callback.result(player,
+                    new DicePairImpl(getRandomDiceFace(), getRandomDiceFace(), GameEngine.NUM_FACES), this);
+        }
     }
 
     @Override
     public void rollHouse(int initialDelay, int finalDelay, int delayIncrement)
     {
-        int rollCount = (finalDelay - initialDelay) / delayIncrement;
+        int rollCount = (finalDelay - (initialDelay - 1)) / delayIncrement;
         int delay = initialDelay;
 
         if (rollCount < 1) rollCount = 1; // Just in case for someone input something wrong...
 
         for (int count = 0; count < rollCount; count += 1) {
-            callback.intermediateHouseResult(new DicePairImpl(), this);
+
+            for (GameEngineCallback callback : callbackList) {
+                callback.intermediateHouseResult(
+                        new DicePairImpl(getRandomDiceFace(), getRandomDiceFace(), GameEngine.NUM_FACES), this);
+            }
+
+            // Increase next delay time
             delay += delayIncrement;
+
+            // Start to delay
             try {
                 TimeUnit.MILLISECONDS.sleep(delay);
             } catch (InterruptedException e) {
@@ -65,7 +90,7 @@ public class GameEngineImpl implements GameEngine
         }
 
         // Generate the house result
-        DicePair dicePair = new DicePairImpl();
+        DicePair dicePair = new DicePairImpl(getRandomDiceFace(), getRandomDiceFace(), GameEngine.NUM_FACES);
 
 
         // Iterate the players and print for comparing with the house to decide who win or who lose
@@ -80,8 +105,9 @@ public class GameEngineImpl implements GameEngine
         }
 
         // Log the final result AFTER the comparison
-        callback.houseResult(dicePair, this);
-
+        for(GameEngineCallback callback : callbackList) {
+            callback.houseResult(dicePair, this);
+        }
     }
 
     @Override
@@ -109,23 +135,29 @@ public class GameEngineImpl implements GameEngine
     @Override
     public void addGameEngineCallback(GameEngineCallback gameEngineCallback)
     {
-        callback = gameEngineCallback;
+        callbackList.add(gameEngineCallback);
     }
 
     @Override
     public boolean removeGameEngineCallback(GameEngineCallback gameEngineCallback)
     {
-        if(callback == null) {
-            return false;
-        } else {
-            callback = null;
-            return true;
-        }
+        return callbackList.remove(gameEngineCallback);
     }
 
     @Override
     public Collection<Player> getAllPlayers()
     {
         return playerList;
+    }
+
+    private int getRandomDiceFace()
+    {
+        // Generate a random integer between 1 to 6
+        // It seems to be the best way to generate any random number with range in Java is using "ThreadLocalRandom"...
+        //
+        // Ref:
+        // https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
+
+        return ThreadLocalRandom.current().nextInt(1, GameEngine.NUM_FACES + 1);
     }
 }

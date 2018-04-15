@@ -16,7 +16,6 @@ public class SimplePlayer implements Player
         this.playerId = playerId;
         this.playerName = playerName;
         this.points = points;
-        this.dicePair = new DicePairImpl();
     }
 
     @Override
@@ -76,5 +75,12 @@ public class SimplePlayer implements Player
     public void setRollResult(DicePair rollResult)
     {
         this.dicePair = rollResult;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("id=%s, name=%s, points=%d",
+                this.playerId, this.playerName, this.points);
     }
 }

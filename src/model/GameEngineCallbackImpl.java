@@ -35,7 +35,7 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 
         // Then, add our own handler.
         Handler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.FINEST);
+        consoleHandler.setLevel(Level.FINE);
         logger.addHandler(consoleHandler);
 
         // By the way we also need to register a file handler...
@@ -82,10 +82,7 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 
     private void displayFinalResult(Player currentPlayer)
     {
-        logger.log(Level.INFO, String.format("Player: id=%s, name=%s, points=%d",
-                currentPlayer.getPlayerId(),
-                currentPlayer.getPlayerName(),
-                currentPlayer.getPoints()));
+        logger.log(Level.INFO, String.format("Player: %s", currentPlayer.toString()));
     }
 
 }
