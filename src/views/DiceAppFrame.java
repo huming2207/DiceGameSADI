@@ -1,14 +1,16 @@
 package views;
 
+import controllers.GameController;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class DiceAppFrame extends JFrame
 {
-    private DiceToolbar diceToolbar = new DiceToolbar();
+    private ToolbarPanel toolbarPanel;
     private DiceConsole diceConsole = new DiceConsole();
 
-    public DiceAppFrame()
+    public DiceAppFrame(GameController gameController)
     {
         // Initialise window frame
         super("SADI Dice Game GUI");
@@ -16,16 +18,16 @@ public class DiceAppFrame extends JFrame
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
 
+        // Initialise toolbar
+        this.toolbarPanel = new ToolbarPanel(gameController);
+        DiceToolbar toolbar = new DiceToolbar(this.toolbarPanel);
+
         // Add components to the window frame
-        this.add(this.diceToolbar, BorderLayout.NORTH);
+        this.add(toolbar, BorderLayout.NORTH);
         this.add(this.diceConsole, BorderLayout.CENTER);
         this.setVisible(true);
     }
 
-    public DiceToolbar getDiceToolbar()
-    {
-        return diceToolbar;
-    }
 
     public DiceConsole getDiceConsole()
     {
