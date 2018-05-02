@@ -1,6 +1,5 @@
 package views.toolbar;
 
-import controllers.ComboBoxListener;
 import controllers.GameController;
 
 import javax.swing.*;

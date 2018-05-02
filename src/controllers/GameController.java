@@ -1,5 +1,8 @@
 package controllers;
 
+import controllers.listeners.BetPlacementListener;
+import controllers.listeners.ComboBoxListener;
+
 public class GameController
 {
     public ComboBoxListener getComboBoxListener()
