@@ -1,4 +1,4 @@
-package views;
+package views.toolbar;
 
 import controllers.ComboBoxListener;
 import controllers.GameController;
@@ -26,10 +26,15 @@ public class ToolbarPanel extends JPanel
         this.selectionComboBox.setPreferredSize(new Dimension(150, 20));
 
         // Add components
+        // player selection
         this.add(this.selectionComboBox);
         this.add(this.setBetTextfield);
         this.add(this.placeBetButton);
+
+        // Add a separator between player selection and player adder
         this.add(Box.createHorizontalStrut(30));
+
+        // player adder
         this.add(this.nameTextfield);
         this.add(this.initialBetTextfield);
         this.add(this.addPlayerButton);

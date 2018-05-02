@@ -1,6 +1,8 @@
 package views;
 
 import controllers.GameController;
+import views.toolbar.DiceToolbar;
+import views.toolbar.ToolbarPanel;
 
 import javax.swing.*;
 import java.awt.*;

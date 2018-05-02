@@ -1,20 +1,12 @@
-package views;
-
-import controllers.GameController;
+package views.toolbar;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class DiceToolbar extends JToolBar
 {
-
-
     public DiceToolbar(ToolbarPanel toolbarPanel)
     {
         super();
-
         this.add(toolbarPanel);
     }
-
-
 }
