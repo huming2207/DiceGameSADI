@@ -2,6 +2,7 @@ package controllers;
 
 import model.common.GameEngineImpl;
 import model.common.SimplePlayer;
+import model.gui.GuiCallback;
 import model.interfaces.GameEngine;
 import views.DiceAppFrame;
 
@@ -24,6 +25,7 @@ public class GameController
 
         // ...here I run game engine on "main" thread instead
         this.gameEngine = new GameEngineImpl();
+        this.gameEngine.addGameEngineCallback(new GuiCallback(this));
         System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
     }
 
@@ -69,6 +71,11 @@ public class GameController
     public void handleBetPlacementRequest(ActionEvent event)
     {
 
+    }
+
+    public void handleHouseBetRequest(ActionEvent event)
+    {
+        this.gameEngine.rollHouse(1, 1000, 100);
     }
 
     public DiceAppFrame getAppFrame()

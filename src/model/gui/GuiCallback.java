@@ -39,12 +39,17 @@ public class GuiCallback implements GameEngineCallback
     @Override
     public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine)
     {
-
+        InfoPanel.appendLabelText(
+                infoPanel.getHouseBetLabel(),
+                String.format("%d+%d=%d; ",
+                        dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1() + dicePair.getDice2()));
     }
 
     @Override
     public void houseResult(DicePair result, GameEngine gameEngine)
     {
-
+        InfoPanel.appendLabelText(
+                infoPanel.getHouseResultLabel(),
+                String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice2() + result.getDice2()));
     }
 }

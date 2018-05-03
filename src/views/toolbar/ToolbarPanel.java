@@ -45,6 +45,7 @@ public class ToolbarPanel extends JPanel
         // For teachers who is marking this assignment: please change it to non-lambda
         this.addPlayerButton.addActionListener(gameController::handleAddPlayerRequest);
         this.placeBetButton.addActionListener(gameController::handleBetPlacementRequest);
+        this.houseButton.addActionListener(gameController::handleHouseBetRequest);
 
         // Add components
         // player selection
