@@ -81,11 +81,11 @@ public class InfoPanel extends JPanel
 
     public static void updateLabelText(JLabel label, String str)
     {
-        SwingUtilities.invokeLater(() -> label.setText(str));
+        label.setText(str);
     }
 
     public static void appendLabelText(JLabel label, String str)
     {
-        SwingUtilities.invokeLater(() -> label.setText(label.getText() + str));
+        label.setText(label.getText() + str);
     }
 }

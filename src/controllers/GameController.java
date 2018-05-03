@@ -10,6 +10,7 @@ import views.DiceAppFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.lang.reflect.InvocationTargetException;
 
 public class GameController
 {
@@ -21,7 +22,12 @@ public class GameController
     public GameController()
     {
         // Start UI with a new UI thread
-        SwingUtilities.invokeLater(() -> this.appFrame = new DiceAppFrame(this));
+        try {
+            SwingUtilities.invokeAndWait(() -> this.appFrame = new DiceAppFrame(this));
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
 
         // ...here I run game engine on "main" thread instead
         this.gameEngine = new GameEngineImpl();
@@ -75,7 +81,7 @@ public class GameController
 
     public void handleHouseBetRequest(ActionEvent event)
     {
-        this.gameEngine.rollHouse(1, 1000, 100);
+        new Thread(() -> this.gameEngine.rollHouse(1, 1000, 100)).start();
     }
 
     public DiceAppFrame getAppFrame()
