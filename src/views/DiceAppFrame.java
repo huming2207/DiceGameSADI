@@ -1,6 +1,7 @@
 package views;
 
 import controllers.GameController;
+import views.panel.InfoPanel;
 import views.toolbar.DiceToolbar;
 import views.toolbar.ToolbarPanel;
 
@@ -10,7 +11,7 @@ import java.awt.*;
 public class DiceAppFrame extends JFrame
 {
     private ToolbarPanel toolbarPanel;
-    private DiceConsole diceConsole = new DiceConsole();
+    private InfoPanel infoPanel;
 
     public DiceAppFrame(GameController gameController)
     {
@@ -24,17 +25,15 @@ public class DiceAppFrame extends JFrame
         this.toolbarPanel = new ToolbarPanel(gameController);
         DiceToolbar toolbar = new DiceToolbar(this.toolbarPanel);
 
+        // Initialise info panel
+        this.infoPanel = new InfoPanel(gameController);
+
         // Add components to the window frame
         this.add(toolbar, BorderLayout.NORTH);
-        this.add(this.diceConsole, BorderLayout.CENTER);
+        this.add(this.infoPanel, BorderLayout.CENTER);
         this.setVisible(true);
     }
 
-
-    public DiceConsole getDiceConsole()
-    {
-        return this.diceConsole;
-    }
 
     public ToolbarPanel getToolbarPanel()
     {
