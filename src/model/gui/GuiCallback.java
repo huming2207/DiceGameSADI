@@ -32,24 +32,34 @@ public class GuiCallback implements GameEngineCallback
     @Override
     public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
     {
-
+        logger.log(Level.FINE, String.format("%s: ROLLING %s", player.getPlayerName(), dicePair.toString()));
     }
 
     @Override
     public void result(Player player, DicePair result, GameEngine gameEngine)
     {
-
+        // final results logged at Level.INFO
+        logger.log(Level.INFO, String.format("%s: *RESULT* %s", player.getPlayerName(), result.toString()));
     }
 
     @Override
     public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine)
     {
-
+        logger.log(Level.FINE, String.format("House: ROLLING %s", dicePair.toString()));
     }
 
     @Override
     public void houseResult(DicePair result, GameEngine gameEngine)
     {
+        logger.log(Level.FINE, String.format("House: *RESULT* %s", result.toString()));
 
+        for(Player player : gameEngine.getAllPlayers()) {
+            displayFinalResult(player);
+        }
+    }
+
+    private void displayFinalResult(Player currentPlayer)
+    {
+        logger.log(Level.INFO, String.format("Player: %s", currentPlayer.toString()));
     }
 }
