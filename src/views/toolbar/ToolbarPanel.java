@@ -9,9 +9,9 @@ import java.awt.event.ActionEvent;
 public class ToolbarPanel extends JPanel
 {
     private JComboBox<String> selectionComboBox;
-    private JTextField nameTextfield = new JTextField("Enter name here");
-    private JTextField initialBetTextfield = new JTextField("Enter initial bet here");
-    private JTextField setBetTextfield = new JTextField("Enter bet here");
+    private JTextField nameTextfield = new JTextField("Rotten Durian");
+    private JTextField initialBetTextfield = new JTextField("1000");
+    private JTextField setBetTextfield = new JTextField("500");
     private JButton placeBetButton = new JButton("Place bet");
     private JButton addPlayerButton = new JButton("Add player");
 
@@ -27,6 +27,17 @@ public class ToolbarPanel extends JPanel
         // Resize two buttons (way too large)
         this.placeBetButton.setPreferredSize(new Dimension(100, 20));
         this.addPlayerButton.setPreferredSize(new Dimension(120,20));
+
+        // Resize text boxes
+        this.setBetTextfield.setPreferredSize(new Dimension(50, 20));
+        this.nameTextfield.setPreferredSize(new Dimension(150, 20));
+        this.initialBetTextfield.setPreferredSize(new Dimension(50, 20));
+
+        // Add tooltip for to clearify the function
+        this.setBetTextfield.setToolTipText("Place a bet here");
+        this.initialBetTextfield.setToolTipText("Set the initial bet balance here");
+        this.nameTextfield.setToolTipText("Set the player name here");
+        this.selectionComboBox.setToolTipText("Select a player here");
 
         // Add listener for buttons
         // For teachers who is marking this assignment: please change it to non-lambda

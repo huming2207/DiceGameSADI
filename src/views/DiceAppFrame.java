@@ -17,7 +17,7 @@ public class DiceAppFrame extends JFrame
     {
         // Initialise window frame
         super("SADI Dice Game GUI");
-        this.setBounds(100, 100, 800, 600);
+        this.setBounds(100, 100, 1000, 300);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
 

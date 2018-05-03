@@ -23,13 +23,17 @@ public class GuiCallback implements GameEngineCallback
     public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
     {
         InfoPanel.appendLabelText(
-                infoPanel.getPlayerBetLabel(), String.format("%d/%d ", dicePair.getDice1(), dicePair.getDice2()));
+                infoPanel.getPlayerBetLabel(),
+                String.format("%d+%d=%d; ",
+                        dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1() + dicePair.getDice2()));
     }
 
     @Override
     public void result(Player player, DicePair result, GameEngine gameEngine)
     {
-        InfoPanel.appendLabelText(infoPanel.getPlayerResultLabel(), String.format("%d/%d ", result.getDice1(), result.getDice2()));
+        InfoPanel.appendLabelText(
+                infoPanel.getPlayerResultLabel(),
+                String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice2() + result.getDice2()));
     }
 
     @Override
