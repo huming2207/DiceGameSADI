@@ -1,8 +1,8 @@
 package client;
 
 import model.console.ConsoleCallback;
-import model.GameEngineImpl;
-import model.SimplePlayer;
+import model.common.GameEngineImpl;
+import model.common.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 

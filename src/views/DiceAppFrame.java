@@ -39,4 +39,9 @@ public class DiceAppFrame extends JFrame
     {
         return this.toolbarPanel;
     }
+
+    public InfoPanel getInfoPanel()
+    {
+        return this.infoPanel;
+    }
 }

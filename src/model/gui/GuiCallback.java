@@ -1,23 +1,35 @@
 package model.gui;
 
+import controllers.GameController;
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
+import views.panel.InfoPanel;
 
 public class GuiCallback implements GameEngineCallback
 {
 
+    private GameController gameController;
+    private InfoPanel infoPanel;
+
+    public GuiCallback(GameController gameController)
+    {
+        this.gameController = gameController;
+        this.infoPanel = gameController.getAppFrame().getInfoPanel();
+    }
+
     @Override
     public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
     {
-
+        InfoPanel.appendLabelText(
+                infoPanel.getPlayerBetLabel(), String.format("%d/%d ", dicePair.getDice1(), dicePair.getDice2()));
     }
 
     @Override
     public void result(Player player, DicePair result, GameEngine gameEngine)
     {
-
+        InfoPanel.appendLabelText(infoPanel.getPlayerResultLabel(), String.format("%d/%d ", result.getDice1(), result.getDice2()));
     }
 
     @Override

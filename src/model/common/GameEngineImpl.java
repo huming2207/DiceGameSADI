@@ -1,5 +1,6 @@
-package model;
+package model.common;
 
+import model.common.DicePairImpl;
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.GameEngineCallback;
@@ -7,7 +8,6 @@ import model.interfaces.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 

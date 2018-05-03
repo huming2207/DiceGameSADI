@@ -1,7 +1,7 @@
 package controllers;
 
-import model.GameEngineImpl;
-import model.SimplePlayer;
+import model.common.GameEngineImpl;
+import model.common.SimplePlayer;
 import model.interfaces.GameEngine;
 import views.DiceAppFrame;
 
