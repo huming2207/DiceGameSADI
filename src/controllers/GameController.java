@@ -1,32 +1,29 @@
 package controllers;
 
-import controllers.listeners.BetPlacementListener;
-import controllers.listeners.ComboBoxListener;
+import views.DiceAppFrame;
+
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class GameController
 {
-    public ComboBoxListener getComboBoxListener()
+    private DiceAppFrame appFrame;
+
+    public GameController()
     {
-        return comboBoxListener;
+        SwingUtilities.invokeLater(() -> this.appFrame = new DiceAppFrame(this));
     }
 
-    public void setComboBoxListener(ComboBoxListener comboBoxListener)
+
+    public void handleAddPlayerRequest(ActionEvent event)
     {
-        this.comboBoxListener = comboBoxListener;
     }
 
-    public BetPlacementListener getBetPlacementListener()
+    public void handleBetPlacementRequest(ActionEvent event)
     {
-        return betPlacementListener;
-    }
 
-    public void setBetPlacementListener(BetPlacementListener betPlacementListener)
-    {
-        this.betPlacementListener = betPlacementListener;
     }
-
-    private ComboBoxListener comboBoxListener;
-    private BetPlacementListener betPlacementListener;
 
 
 }

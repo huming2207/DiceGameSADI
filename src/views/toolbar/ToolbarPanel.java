@@ -4,6 +4,7 @@ import controllers.GameController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class ToolbarPanel extends JPanel
 {
@@ -21,12 +22,16 @@ public class ToolbarPanel extends JPanel
 
         // Initialise combobox, resize it
         this.selectionComboBox = new JComboBox<>();
-        this.selectionComboBox.addActionListener(gameController.getComboBoxListener());
         this.selectionComboBox.setPreferredSize(new Dimension(150, 20));
 
         // Resize two buttons (way too large)
         this.placeBetButton.setPreferredSize(new Dimension(100, 20));
         this.addPlayerButton.setPreferredSize(new Dimension(120,20));
+
+        // Add listener for buttons
+        // For teachers who is marking this assignment: please change it to non-lambda
+        this.addPlayerButton.addActionListener(gameController::handleAddPlayerRequest);
+        this.placeBetButton.addActionListener(gameController::handleBetPlacementRequest);
 
         // Add components
         // player selection

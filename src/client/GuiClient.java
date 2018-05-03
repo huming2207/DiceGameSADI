@@ -10,6 +10,5 @@ public class GuiClient
     public static void main(String[] args)
     {
         GameController gameController = new GameController();
-        SwingUtilities.invokeLater(() -> new DiceAppFrame(gameController));
     }
 }

@@ -33,6 +33,11 @@ public class DiceAppFrame extends JFrame
 
     public DiceConsole getDiceConsole()
     {
-        return diceConsole;
+        return this.diceConsole;
+    }
+
+    public ToolbarPanel getToolbarPanel()
+    {
+        return this.toolbarPanel;
     }
 }
