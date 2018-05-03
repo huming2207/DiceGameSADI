@@ -34,7 +34,7 @@ public class GuiLogHandler extends StreamHandler
             @Override
             public void write(int b) throws IOException
             {
-                textArea.append(String.valueOf(b));
+                SwingUtilities.invokeLater(() -> textArea.append(String.valueOf(b))) ;
             }
         });
     }
