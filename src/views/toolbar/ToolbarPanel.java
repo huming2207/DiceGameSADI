@@ -11,7 +11,7 @@ public class ToolbarPanel extends JPanel
     private JComboBox<String> selectionComboBox;
     private JTextField nameTextfield = new JTextField("Enter name here");
     private JTextField initialBetTextfield = new JTextField("Enter initial bet here");
-    private JTextField setBetTextfield = new JTextField("Enter bet placement here");
+    private JTextField setBetTextfield = new JTextField("Enter bet here");
     private JButton placeBetButton = new JButton("Place bet");
     private JButton addPlayerButton = new JButton("Add player");
 
@@ -24,6 +24,10 @@ public class ToolbarPanel extends JPanel
         this.selectionComboBox = new JComboBox<>();
         this.selectionComboBox.addActionListener(gameController.getComboBoxListener());
         this.selectionComboBox.setPreferredSize(new Dimension(150, 20));
+
+        // Resize two buttons (way too large)
+        this.placeBetButton.setPreferredSize(new Dimension(100, 20));
+        this.addPlayerButton.setPreferredSize(new Dimension(120,20));
 
         // Add components
         // player selection
