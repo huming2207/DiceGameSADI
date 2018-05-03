@@ -7,13 +7,13 @@ import java.awt.*;
 
 public class InfoPanel extends JPanel
 {
-    private JLabel playerLabel = new JLabel("Player: Unknown");
+    private JLabel playerLabel = new JLabel("Player: ");
     private JLabel playerBalanceLabel = new JLabel("Player balance: ");
     private JLabel playerBetLabel = new JLabel("Player bet: ");
-    private JLabel playerResultLabel = new JLabel("Player final result: Unknown");
+    private JLabel playerResultLabel = new JLabel("Player final result:");
     private JLabel houseLabel = new JLabel("House");
-    private JLabel houseBetLabel = new JLabel("House bet: Unknown");
-    private JLabel houseResultLabel = new JLabel("House final result: Unknown");
+    private JLabel houseBetLabel = new JLabel("House bet: ");
+    private JLabel houseResultLabel = new JLabel("House final result: ");
 
     private GameController gameController;
 
