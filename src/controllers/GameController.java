@@ -18,6 +18,7 @@ public class GameController
 
     public void handleAddPlayerRequest(ActionEvent event)
     {
+
     }
 
     public void handleBetPlacementRequest(ActionEvent event)
@@ -25,5 +26,8 @@ public class GameController
 
     }
 
-
+    public DiceAppFrame getAppFrame()
+    {
+        return this.appFrame;
+    }
 }
