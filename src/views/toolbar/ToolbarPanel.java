@@ -9,11 +9,12 @@ import java.awt.event.ActionEvent;
 public class ToolbarPanel extends JPanel
 {
     private JComboBox<String> selectionComboBox;
-    private JTextField nameTextfield = new JTextField("Rotten Durian");
+    private JTextField nameTextfield = new JTextField("Rotten Durian"); // Remember to commit and push before evacuation
     private JTextField initialBetTextfield = new JTextField("1000");
     private JTextField setBetTextfield = new JTextField("500");
     private JButton placeBetButton = new JButton("Place bet");
     private JButton addPlayerButton = new JButton("Add player");
+    private JButton houseButton = new JButton("House bet");
 
     public ToolbarPanel(GameController gameController)
     {
@@ -25,7 +26,8 @@ public class ToolbarPanel extends JPanel
         this.selectionComboBox.setPreferredSize(new Dimension(150, 20));
 
         // Resize two buttons (way too large)
-        this.placeBetButton.setPreferredSize(new Dimension(100, 20));
+        this.placeBetButton.setPreferredSize(new Dimension(120, 20));
+        this.houseButton.setPreferredSize(new Dimension(120, 20));
         this.addPlayerButton.setPreferredSize(new Dimension(120,20));
 
         // Resize text boxes
@@ -57,6 +59,12 @@ public class ToolbarPanel extends JPanel
         this.add(this.nameTextfield);
         this.add(this.initialBetTextfield);
         this.add(this.addPlayerButton);
+
+        // Add a separator between player adder and house
+        this.add(Box.createHorizontalStrut(30));
+
+        // Add house button
+        this.add(this.houseButton);
 
     }
 
