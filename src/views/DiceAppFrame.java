@@ -32,6 +32,9 @@ public class DiceAppFrame extends JFrame
         this.add(toolbar, BorderLayout.NORTH);
         this.add(this.infoPanel, BorderLayout.CENTER);
         this.setVisible(true);
+
+        // Print current thread ID
+        System.out.println(String.format("UI Thread ID: %d", Thread.currentThread().getId()));
     }
 
 

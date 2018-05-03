@@ -19,16 +19,12 @@ public class GameController
 
     public GameController()
     {
-
         // Start UI with a new UI thread
-        // This is an opposite approach from assignment spec but it does separate out to another thread anyway...
-        new Thread(() ->
-        {
-            this.appFrame = new DiceAppFrame(this);
-        }).start();
+        SwingUtilities.invokeLater(() -> this.appFrame = new DiceAppFrame(this));
 
         // ...here I run game engine on "main" thread instead
         this.gameEngine = new GameEngineImpl();
+        System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
     }
 
     /**
