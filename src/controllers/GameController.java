@@ -84,11 +84,25 @@ public class GameController
         try {
             bet = Integer.parseInt(this.appFrame.getToolbarPanel().getSetBetTextfield().getText());
         } catch(NumberFormatException numFormatException) {
-            JOptionPane.showMessageDialog(null, "Initial bet is not a number!", "Format error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Initial bet is not a number!",
+                    "Format error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         this.selectedPlayer = ((GuiPlayer)this.appFrame.getToolbarPanel().getSelectionComboBox().getSelectedItem());
+
+        if(this.selectedPlayer == null) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "You didn't select a correct player!",
+                    "Selection error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         this.gameEngine.placeBet(this.selectedPlayer, bet);
         new Thread(() -> this.gameEngine.rollPlayer(selectedPlayer, 1, 1000, 100))
                 .start();
@@ -96,6 +110,15 @@ public class GameController
 
     public void handleHouseBetRequest(ActionEvent event)
     {
+        if(this.selectedPlayer == null) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "House bet must comes after at least one player bet",
+                    "Selection error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         new Thread(() -> this.gameEngine.rollHouse(1, 1000, 100)).start();
     }
 
