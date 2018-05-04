@@ -118,6 +118,17 @@ public class GameController
             return;
         }
 
+        for(Player player : this.gameEngine.getAllPlayers()) {
+            if(player.getRollResult() == null) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "At least one player(s) haven't placed bet yet, please check again",
+                        "Selection error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
         new Thread(() -> this.gameEngine.rollHouse(1, 1000, 100)).start();
     }
 
