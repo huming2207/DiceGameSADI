@@ -41,7 +41,7 @@ public class GuiCallback implements GameEngineCallback
     {
         InfoPanel.appendLabelText(
                 infoPanel.getHouseBetLabel(),
-                String.format("%d+%d=%d; ",
+                String.format("%d+%d=%d;; ",
                         dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1() + dicePair.getDice2()));
     }
 

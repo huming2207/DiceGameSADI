@@ -4,6 +4,7 @@ import model.common.GameEngineImpl;
 import model.common.SimplePlayer;
 import model.gui.GuiCallback;
 import model.interfaces.GameEngine;
+import model.interfaces.Player;
 import views.DiceAppFrame;
 
 
@@ -29,7 +30,7 @@ public class GameController
         }
 
 
-        // ...here I run game engine on "main" thread instead
+        // Leave game engine on "main" thread instead
         this.gameEngine = new GameEngineImpl();
         this.gameEngine.addGameEngineCallback(new GuiCallback(this));
         System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
@@ -63,7 +64,7 @@ public class GameController
         }
 
         // Create a new player
-        SimplePlayer player = new SimplePlayer(playerName, Integer.toString(this.playerId), initBet);
+        SimplePlayer player = new SimplePlayer(Integer.toString(this.playerId), playerName, initBet);
         this.gameEngine.addPlayer(player);
 
         // Add to combo box
