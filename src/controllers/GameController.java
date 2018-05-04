@@ -8,6 +8,7 @@ import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import views.DiceAppFrame;
+import views.panel.InfoPanel;
 
 
 import javax.swing.*;
@@ -92,8 +93,6 @@ public class GameController
             return;
         }
 
-        this.selectedPlayer = ((GuiPlayer)this.appFrame.getToolbarPanel().getSelectionComboBox().getSelectedItem());
-
         if(this.selectedPlayer == null) {
             JOptionPane.showMessageDialog(
                     null,
@@ -120,6 +119,21 @@ public class GameController
         }
 
         new Thread(() -> this.gameEngine.rollHouse(1, 1000, 100)).start();
+    }
+
+    public void handleComboBoxSelection(ActionEvent actionEvent)
+    {
+        // Clean up the label
+        // Here I do not consider the concurrency issue as required in assignment spec
+        this.appFrame.getInfoPanel().cleanUp();
+
+        // Here I assume the player is not null, because only valid player will be shown in the combo box
+        this.selectedPlayer = ((GuiPlayer)this.appFrame.getToolbarPanel().getSelectionComboBox().getSelectedItem());
+
+        // Update balance label
+        InfoPanel.updateLabelText(
+                this.getAppFrame().getInfoPanel().getPlayerBalanceLabel(),
+                String.format("Balance: %d", this.selectedPlayer.getPoints()));
     }
 
     public DiceAppFrame getAppFrame()

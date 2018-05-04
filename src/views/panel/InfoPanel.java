@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class InfoPanel extends JPanel
 {
-    private JLabel playerLabel = new JLabel("Player: ");
+    private JLabel playerLabel = new JLabel("Player");
     private JLabel playerBalanceLabel = new JLabel("Player balance: ");
     private JLabel playerBetLabel = new JLabel("Player bet: ");
     private JLabel playerResultLabel = new JLabel("Player final result:");
@@ -77,6 +77,17 @@ public class InfoPanel extends JPanel
     public GameController getGameController()
     {
         return this.gameController;
+    }
+
+    public void cleanUp()
+    {
+        this.playerLabel.setText("Player");
+        this.playerBalanceLabel.setText("Player balance: ");
+        this.playerBetLabel.setText("Player bet: ");
+        this.playerResultLabel.setText("Player final result:");
+        this.houseLabel.setText("House");
+        this.houseBetLabel.setText("House bet: ");
+        this.houseResultLabel.setText("House final result: ");
     }
 
     public static void updateLabelText(JLabel label, String str)
