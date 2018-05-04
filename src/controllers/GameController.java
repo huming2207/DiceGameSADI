@@ -4,7 +4,9 @@ import model.common.GameEngineImpl;
 import model.console.SimplePlayer;
 import model.gui.GuiCallback;
 import model.gui.GuiPlayer;
+import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
+import model.interfaces.Player;
 import views.DiceAppFrame;
 
 
@@ -17,6 +19,7 @@ public class GameController
     private static GameController gameController = null;
     private DiceAppFrame appFrame;
     private final GameEngine gameEngine;
+    private Player selectedPlayer;
     private int playerId = 0;
 
     public GameController()
@@ -76,7 +79,19 @@ public class GameController
 
     public void handleBetPlacementRequest(ActionEvent event)
     {
+        int bet;
 
+        try {
+            bet = Integer.parseInt(this.appFrame.getToolbarPanel().getSetBetTextfield().getText());
+        } catch(NumberFormatException numFormatException) {
+            JOptionPane.showMessageDialog(null, "Initial bet is not a number!", "Format error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        this.selectedPlayer = ((GuiPlayer)this.appFrame.getToolbarPanel().getSelectionComboBox().getSelectedItem());
+        this.gameEngine.placeBet(this.selectedPlayer, bet);
+        new Thread(() -> this.gameEngine.rollPlayer(selectedPlayer, 1, 1000, 100))
+                .start();
     }
 
     public void handleHouseBetRequest(ActionEvent event)
@@ -87,5 +102,10 @@ public class GameController
     public DiceAppFrame getAppFrame()
     {
         return this.appFrame;
+    }
+
+    public Player getCurrentPlayer()
+    {
+        return this.selectedPlayer;
     }
 }
