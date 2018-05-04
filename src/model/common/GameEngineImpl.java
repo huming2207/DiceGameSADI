@@ -1,6 +1,5 @@
 package model.common;
 
-import model.common.DicePairImpl;
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.GameEngineCallback;

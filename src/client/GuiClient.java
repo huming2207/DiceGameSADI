@@ -1,9 +1,6 @@
 package client;
 
 import controllers.GameController;
-import views.DiceAppFrame;
-
-import javax.swing.*;
 
 public class GuiClient
 {

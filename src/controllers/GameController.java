@@ -4,7 +4,6 @@ import model.common.GameEngineImpl;
 import model.console.SimplePlayer;
 import model.gui.GuiCallback;
 import model.gui.GuiPlayer;
-import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import views.DiceAppFrame;

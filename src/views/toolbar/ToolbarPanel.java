@@ -5,7 +5,6 @@ import model.interfaces.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class ToolbarPanel extends JPanel
 {
@@ -89,15 +88,5 @@ public class ToolbarPanel extends JPanel
     public JTextField getSetBetTextfield()
     {
         return this.setBetTextfield;
-    }
-
-    public JButton getPlaceBetButton()
-    {
-        return this.placeBetButton;
-    }
-
-    public JButton getAddPlayerButton()
-    {
-        return this.addPlayerButton;
     }
 }
