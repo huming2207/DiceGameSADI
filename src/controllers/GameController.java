@@ -1,15 +1,14 @@
 package controllers;
 
 import model.common.GameEngineImpl;
-import model.common.SimplePlayer;
+import model.console.SimplePlayer;
 import model.gui.GuiCallback;
+import model.gui.GuiPlayer;
 import model.interfaces.GameEngine;
-import model.interfaces.Player;
 import views.DiceAppFrame;
 
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
 
@@ -64,11 +63,11 @@ public class GameController
         }
 
         // Create a new player
-        SimplePlayer player = new SimplePlayer(Integer.toString(this.playerId), playerName, initBet);
+        SimplePlayer player = new GuiPlayer(Integer.toString(this.playerId), playerName, initBet);
         this.gameEngine.addPlayer(player);
 
         // Add to combo box
-        SwingUtilities.invokeLater(() -> this.appFrame.getToolbarPanel().getSelectionComboBox().addItem(playerName));
+        SwingUtilities.invokeLater(() -> this.appFrame.getToolbarPanel().getSelectionComboBox().addItem(player));
         System.out.println("Added player: " + player.toString());
 
         // Increase player ID every time after use

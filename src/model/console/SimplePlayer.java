@@ -1,4 +1,4 @@
-package model.common;
+package model.console;
 
 import model.interfaces.DicePair;
 import model.interfaces.Player;

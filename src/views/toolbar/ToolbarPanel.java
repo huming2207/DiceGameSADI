@@ -1,6 +1,7 @@
 package views.toolbar;
 
 import controllers.GameController;
+import model.interfaces.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,7 @@ import java.awt.event.ActionEvent;
 
 public class ToolbarPanel extends JPanel
 {
-    private JComboBox<String> selectionComboBox;
+    private JComboBox<Player> selectionComboBox;
     private JTextField nameTextfield = new JTextField("Rotten Durian"); // Remember to commit and push before evacuation
     private JTextField initialBetTextfield = new JTextField("1000");
     private JTextField setBetTextfield = new JTextField("500");
@@ -23,7 +24,7 @@ public class ToolbarPanel extends JPanel
 
         // Initialise combobox, resize it
         this.selectionComboBox = new JComboBox<>();
-        this.selectionComboBox.setPreferredSize(new Dimension(150, 20));
+        this.selectionComboBox.setPreferredSize(new Dimension(250, 20));
 
         // Resize two buttons (way too large)
         this.placeBetButton.setPreferredSize(new Dimension(120, 20));
@@ -69,33 +70,33 @@ public class ToolbarPanel extends JPanel
 
     }
 
-    public JComboBox<String> getSelectionComboBox()
+    public JComboBox<Player> getSelectionComboBox()
     {
-        return selectionComboBox;
+        return this.selectionComboBox;
     }
 
     public JTextField getNameTextfield()
     {
-        return nameTextfield;
+        return this.nameTextfield;
     }
 
     public JTextField getInitialBetTextfield()
     {
-        return initialBetTextfield;
+        return this.initialBetTextfield;
     }
 
     public JTextField getSetBetTextfield()
     {
-        return setBetTextfield;
+        return this.setBetTextfield;
     }
 
     public JButton getPlaceBetButton()
     {
-        return placeBetButton;
+        return this.placeBetButton;
     }
 
     public JButton getAddPlayerButton()
     {
-        return addPlayerButton;
+        return this.addPlayerButton;
     }
 }
