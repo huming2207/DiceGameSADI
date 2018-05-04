@@ -33,7 +33,7 @@ public class GuiCallback implements GameEngineCallback
     {
         InfoPanel.appendLabelText(
                 infoPanel.getPlayerResultLabel(),
-                String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice2() + result.getDice2()));
+                String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice1() + result.getDice2()));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GuiCallback implements GameEngineCallback
     {
         InfoPanel.appendLabelText(
                 infoPanel.getHouseResultLabel(),
-                String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice2() + result.getDice2()));
+                String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice1() + result.getDice2()));
 
         int balance = this.gameController.getCurrentPlayer().getPoints();
 
