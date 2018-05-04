@@ -24,17 +24,17 @@ public class ToolbarPanel extends JPanel
 
         // Initialise combobox, resize it
         this.selectionComboBox = new JComboBox<>();
-        this.selectionComboBox.setPreferredSize(new Dimension(250, 20));
+        this.selectionComboBox.setPreferredSize(new Dimension(250, 25));
 
         // Resize two buttons (way too large)
-        this.placeBetButton.setPreferredSize(new Dimension(120, 20));
-        this.houseButton.setPreferredSize(new Dimension(120, 20));
-        this.addPlayerButton.setPreferredSize(new Dimension(120,20));
+        this.placeBetButton.setPreferredSize(new Dimension(120, 25));
+        this.houseButton.setPreferredSize(new Dimension(120, 25));
+        this.addPlayerButton.setPreferredSize(new Dimension(120,25));
 
         // Resize text boxes
-        this.setBetTextfield.setPreferredSize(new Dimension(50, 20));
-        this.nameTextfield.setPreferredSize(new Dimension(150, 20));
-        this.initialBetTextfield.setPreferredSize(new Dimension(50, 20));
+        this.setBetTextfield.setPreferredSize(new Dimension(50, 25));
+        this.nameTextfield.setPreferredSize(new Dimension(150, 25));
+        this.initialBetTextfield.setPreferredSize(new Dimension(50, 25));
 
         // Add tooltip for to clearify the function
         this.setBetTextfield.setToolTipText("Place a bet here");
