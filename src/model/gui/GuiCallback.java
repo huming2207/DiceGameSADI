@@ -52,8 +52,7 @@ public class GuiCallback implements GameEngineCallback
                 infoPanel.getHouseResultLabel(),
                 String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice1() + result.getDice2()));
 
-        int balance = this.gameController.getCurrentPlayer().getPoints();
-
-        InfoPanel.updateLabelText(infoPanel.getPlayerBalanceLabel(), String.format("Balance: %d", balance));
+        InfoPanel.updateLabelText(infoPanel.getPlayerBalanceLabel(), String.format("Balance: %d",
+                this.gameController.getCurrentPlayer().getPoints()));
     }
 }

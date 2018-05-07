@@ -2,7 +2,7 @@ package client;
 
 import model.console.ConsoleCallback;
 import model.common.GameEngineImpl;
-import model.console.SimplePlayer;
+import model.common.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 

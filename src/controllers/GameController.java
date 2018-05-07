@@ -1,7 +1,7 @@
 package controllers;
 
 import model.common.GameEngineImpl;
-import model.console.SimplePlayer;
+import model.common.SimplePlayer;
 import model.gui.GuiCallback;
 import model.gui.GuiPlayer;
 import model.interfaces.GameEngine;
@@ -55,15 +55,10 @@ public class GameController
     {
         String playerName = this.appFrame.getToolbarPanel().getNameTextfield().getText();
 
-        int initBet = 0;
+        Integer initBet;
 
-        // Try parse initial bet
-        try {
-            initBet = Integer.parseInt(this.appFrame.getToolbarPanel().getInitialBetTextfield().getText());
-        } catch (NumberFormatException numFormatException) {
-            JOptionPane.showMessageDialog(null, "Initial bet is not a number!", "Format error", JOptionPane.ERROR_MESSAGE);
+        if((initBet = validateInput(this.appFrame.getToolbarPanel().getInitialBetTextfield().getText())) == null)
             return;
-        }
 
         // Create a new player
         SimplePlayer player = new GuiPlayer(Integer.toString(this.playerId), playerName, initBet);
@@ -79,18 +74,10 @@ public class GameController
 
     public void handleBetPlacementRequest(ActionEvent event)
     {
-        int bet;
+        Integer bet;
 
-        try {
-            bet = Integer.parseInt(this.appFrame.getToolbarPanel().getSetBetTextfield().getText());
-        } catch(NumberFormatException numFormatException) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Initial bet is not a number!",
-                    "Format error",
-                    JOptionPane.ERROR_MESSAGE);
+        if((bet = validateInput(this.appFrame.getToolbarPanel().getSetBetTextfield().getText())) == null)
             return;
-        }
 
         if(this.selectedPlayer == null) {
             JOptionPane.showMessageDialog(
@@ -154,5 +141,20 @@ public class GameController
     public Player getCurrentPlayer()
     {
         return this.selectedPlayer;
+    }
+
+    private Integer validateInput(String textBoxInput)
+    {
+        int initBet = 0;
+
+        try {
+            initBet = Integer.parseInt(textBoxInput);
+        } catch (NumberFormatException numFormatException) {
+            JOptionPane.showMessageDialog(null, "Initial bet is not a number!",
+                    "Format error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        return initBet;
     }
 }

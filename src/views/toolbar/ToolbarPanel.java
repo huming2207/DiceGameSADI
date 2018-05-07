@@ -42,7 +42,6 @@ public class ToolbarPanel extends JPanel
         this.selectionComboBox.setToolTipText("Select a player here");
 
         // Add listener for buttons
-        // For teachers who is marking this assignment: please change it to non-lambda
         this.addPlayerButton.addActionListener(gameController::handleAddPlayerRequest);
         this.placeBetButton.addActionListener(gameController::handleBetPlacementRequest);
         this.houseButton.addActionListener(gameController::handleHouseBetRequest);
