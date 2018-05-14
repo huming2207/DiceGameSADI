@@ -2,6 +2,7 @@ package controllers;
 
 import model.common.GameEngineImpl;
 import model.common.SimplePlayer;
+import model.console.ConsoleCallback;
 import model.gui.GuiCallback;
 import model.gui.GuiPlayer;
 import model.interfaces.GameEngine;
@@ -35,6 +36,7 @@ public class GameController
         // Leave game engine on "main" thread instead
         this.gameEngine = new GameEngineImpl();
         this.gameEngine.addGameEngineCallback(new GuiCallback(this));
+        this.gameEngine.addGameEngineCallback(new ConsoleCallback());
         System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
     }
 
@@ -131,6 +133,11 @@ public class GameController
         InfoPanel.updateLabelText(
                 this.getAppFrame().getInfoPanel().getPlayerBalanceLabel(),
                 String.format("Balance: %d", this.selectedPlayer.getPoints()));
+    }
+
+    public void handleQuitEvent(ActionEvent actionEvent)
+    {
+        System.exit(0);
     }
 
     public DiceAppFrame getAppFrame()

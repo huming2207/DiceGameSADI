@@ -5,6 +5,8 @@ import model.interfaces.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ToolbarPanel extends JPanel
 {
@@ -46,6 +48,9 @@ public class ToolbarPanel extends JPanel
         this.placeBetButton.addActionListener(gameController::handleBetPlacementRequest);
         this.houseButton.addActionListener(gameController::handleHouseBetRequest);
         this.selectionComboBox.addActionListener(gameController::handleComboBoxSelection);
+        this.selectionComboBox.addActionListener(e -> {
+
+        });
 
         // Add components
         // player selection

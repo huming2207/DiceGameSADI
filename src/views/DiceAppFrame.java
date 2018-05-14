@@ -1,6 +1,7 @@
 package views;
 
 import controllers.GameController;
+import views.menubar.MainMenuBar;
 import views.panel.InfoPanel;
 import views.toolbar.DiceToolbar;
 import views.toolbar.ToolbarPanel;
@@ -20,6 +21,9 @@ public class DiceAppFrame extends JFrame
         this.setBounds(100, 100, 1000, 300);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
+
+        // Initialise menu bar
+        this.setJMenuBar(new MainMenuBar(gameController));
 
         // Initialise toolbar
         this.toolbarPanel = new ToolbarPanel(gameController);
