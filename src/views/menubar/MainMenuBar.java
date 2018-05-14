@@ -1,5 +1,6 @@
 package views.menubar;
 
+import controllers.DialogController;
 import controllers.GameController;
 
 import javax.swing.*;
@@ -8,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class MainMenuBar extends JMenuBar
 {
-    public MainMenuBar(GameController gameController)
+    public MainMenuBar(GameController gameController, DialogController dialogController)
     {
         // Top level menu bar sections
         JMenu playerMenu = new JMenu("Player");
@@ -51,7 +52,7 @@ public class MainMenuBar extends JMenuBar
         // "About" menu section:
         // "About this program" section and shortcut key
         JMenuItem aboutItem = new JMenuItem("About this app", KeyEvent.VK_A);
-        aboutItem.addActionListener(gameController::handleAddPlayerRequest);
+        aboutItem.addActionListener(dialogController::handleShowAboutDialogEvent);
 
         aboutMenu.add(aboutItem);
     }

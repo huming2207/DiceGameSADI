@@ -25,9 +25,11 @@ public class GameController
 
     public GameController()
     {
+        DialogController dialogController = new DialogController();
+
         // Start UI with a new UI thread
         try {
-            SwingUtilities.invokeAndWait(() -> this.appFrame = new DiceAppFrame(this));
+            SwingUtilities.invokeAndWait(() -> this.appFrame = new DiceAppFrame(this, dialogController));
         } catch (InterruptedException | InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -139,6 +141,8 @@ public class GameController
     {
         System.exit(0);
     }
+
+
 
     public DiceAppFrame getAppFrame()
     {

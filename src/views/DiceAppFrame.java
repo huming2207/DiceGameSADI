@@ -1,5 +1,6 @@
 package views;
 
+import controllers.DialogController;
 import controllers.GameController;
 import views.menubar.MainMenuBar;
 import views.panel.InfoPanel;
@@ -14,7 +15,7 @@ public class DiceAppFrame extends JFrame
     private ToolbarPanel toolbarPanel;
     private InfoPanel infoPanel;
 
-    public DiceAppFrame(GameController gameController)
+    public DiceAppFrame(GameController gameController, DialogController dialogController)
     {
         // Initialise window frame
         super("SADI Dice Game GUI");
@@ -23,7 +24,7 @@ public class DiceAppFrame extends JFrame
         this.setLayout(new BorderLayout());
 
         // Initialise menu bar
-        this.setJMenuBar(new MainMenuBar(gameController));
+        this.setJMenuBar(new MainMenuBar(gameController, dialogController));
 
         // Initialise toolbar
         this.toolbarPanel = new ToolbarPanel(gameController);
