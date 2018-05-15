@@ -1,4 +1,4 @@
-package views.menubar;
+package views.components.menubar;
 
 import controllers.DialogController;
 import controllers.GameController;

@@ -8,7 +8,8 @@ import model.gui.GuiPlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import views.DiceAppFrame;
-import views.panel.InfoPanel;
+import views.components.panel.InfoPanel;
+import views.helpers.LabelUpdateHelper;
 
 
 import javax.swing.*;
@@ -132,7 +133,7 @@ public class GameController
         this.selectedPlayer = ((GuiPlayer)this.appFrame.getToolbarPanel().getSelectionComboBox().getSelectedItem());
 
         // Update balance label
-        InfoPanel.updateLabelText(
+        LabelUpdateHelper.updateLabelTextAsync(
                 this.getAppFrame().getInfoPanel().getPlayerBalanceLabel(),
                 String.format("Balance: %d", this.selectedPlayer.getPoints()));
     }

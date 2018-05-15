@@ -1,4 +1,4 @@
-package views.panel;
+package views.components.panel;
 
 import controllers.GameController;
 
@@ -88,15 +88,5 @@ public class InfoPanel extends JPanel
         this.houseLabel.setText("House");
         this.houseBetLabel.setText("House bet: ");
         this.houseResultLabel.setText("House final result: ");
-    }
-
-    public static void updateLabelText(JLabel label, String str)
-    {
-        label.setText(str);
-    }
-
-    public static void appendLabelText(JLabel label, String str)
-    {
-        label.setText(label.getText() + str);
     }
 }

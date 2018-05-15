@@ -2,11 +2,11 @@ package views;
 
 import controllers.DialogController;
 import controllers.GameController;
-import views.menubar.MainMenuBar;
-import views.panel.InfoPanel;
-import views.statusbar.StatusBarPanel;
-import views.toolbar.DiceToolbar;
-import views.toolbar.ToolbarPanel;
+import views.components.menubar.MainMenuBar;
+import views.components.panel.InfoPanel;
+import views.components.panel.StatusBarPanel;
+import views.components.toolbar.DiceToolbar;
+import views.components.toolbar.ToolbarPanel;
 
 import javax.swing.*;
 import java.awt.*;

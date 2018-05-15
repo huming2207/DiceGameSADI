@@ -1,12 +1,10 @@
-package views.toolbar;
+package views.components.toolbar;
 
 import controllers.GameController;
 import model.interfaces.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ToolbarPanel extends JPanel
 {

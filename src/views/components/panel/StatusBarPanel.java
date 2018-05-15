@@ -1,4 +1,4 @@
-package views.statusbar;
+package views.components.panel;
 
 import controllers.GameController;
 

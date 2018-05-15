@@ -1,4 +1,4 @@
-package views.dialog;
+package views.components.dialog;
 
 import controllers.DialogController;
 

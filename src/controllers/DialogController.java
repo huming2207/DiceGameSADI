@@ -1,6 +1,6 @@
 package controllers;
 
-import views.dialog.AboutDialog;
+import views.components.dialog.AboutDialog;
 
 import javax.swing.*;
 import java.awt.*;

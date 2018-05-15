@@ -1,4 +1,4 @@
-package views.toolbar;
+package views.components.toolbar;
 
 import javax.swing.*;
 
