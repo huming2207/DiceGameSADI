@@ -18,7 +18,6 @@ import java.lang.reflect.InvocationTargetException;
 
 public class GameController
 {
-    private static GameController gameController = null;
     private DiceAppFrame appFrame;
     private final GameEngine gameEngine;
     private Player selectedPlayer;
@@ -43,18 +42,6 @@ public class GameController
         System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
     }
 
-    /**
-     * Singleton design
-     * @return GameController
-     */
-    public static GameController getGameController()
-    {
-        if(gameController == null) {
-            gameController = new GameController();
-        }
-
-        return gameController;
-    }
 
     public void handleAddPlayerRequest(ActionEvent event)
     {

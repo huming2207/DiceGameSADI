@@ -6,7 +6,8 @@ import model.interfaces.GameEngine;
 import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
 import views.components.panel.InfoPanel;
-import views.helpers.LabelUpdateHelper;
+
+import javax.swing.*;
 
 public class GuiCallback implements GameEngineCallback
 {
@@ -23,37 +24,41 @@ public class GuiCallback implements GameEngineCallback
     @Override
     public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
     {
-        LabelUpdateHelper.appendLabelTextAsync(
-                infoPanel.getPlayerBetLabel(),
-                String.format("%d+%d=%d; ",
-                        dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1() + dicePair.getDice2()));
+        this.appendTextToLabel(this.infoPanel.getPlayerBetLabel(), String.format("%d+%d=%d; ",
+                dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1() + dicePair.getDice2()));
     }
 
     @Override
     public void result(Player player, DicePair result, GameEngine gameEngine)
     {
-        LabelUpdateHelper.appendLabelTextAsync(
-                infoPanel.getPlayerResultLabel(),
-                String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice1() + result.getDice2()));
+        this.appendTextToLabel(this.infoPanel.getPlayerResultLabel(), String.format("%d+%d=%d",
+                result.getDice1(), result.getDice2(), result.getDice1() + result.getDice2()));
     }
 
     @Override
     public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine)
     {
-        LabelUpdateHelper.appendLabelTextAsync(
-                infoPanel.getHouseBetLabel(),
-                String.format("%d+%d=%d;; ",
-                        dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1() + dicePair.getDice2()));
+        this.appendTextToLabel(this.infoPanel.getHouseBetLabel(), String.format("%d+%d=%d;; ",
+                dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1() + dicePair.getDice2()));
     }
 
     @Override
     public void houseResult(DicePair result, GameEngine gameEngine)
     {
-        LabelUpdateHelper.appendLabelTextAsync(
-                infoPanel.getHouseResultLabel(),
-                String.format("%d+%d=%d", result.getDice1(), result.getDice2(), result.getDice1() + result.getDice2()));
+        this.appendTextToLabel(this.infoPanel.getHouseResultLabel(), String.format("%d+%d=%d",
+                result.getDice1(), result.getDice2(), result.getDice1() + result.getDice2()));
 
-        LabelUpdateHelper.updateLabelTextAsync(infoPanel.getPlayerBalanceLabel(), String.format("Balance: %d",
+        this.setTextToLabel(this.infoPanel.getPlayerBalanceLabel(), String.format("Balance: %d",
                 this.gameController.getCurrentPlayer().getPoints()));
+    }
+
+    private void appendTextToLabel(JLabel label, String text)
+    {
+        SwingUtilities.invokeLater(() -> label.setText(label.getText() + text));
+    }
+
+    private void setTextToLabel(JLabel label, String text)
+    {
+        SwingUtilities.invokeLater(() -> label.setText(text));
     }
 }
