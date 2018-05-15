@@ -4,6 +4,7 @@ import controllers.DialogController;
 import controllers.GameController;
 import views.menubar.MainMenuBar;
 import views.panel.InfoPanel;
+import views.statusbar.StatusBarPanel;
 import views.toolbar.DiceToolbar;
 import views.toolbar.ToolbarPanel;
 
@@ -14,6 +15,7 @@ public class DiceAppFrame extends JFrame
 {
     private ToolbarPanel toolbarPanel;
     private InfoPanel infoPanel;
+    private StatusBarPanel statusBarPanel;
 
     public DiceAppFrame(GameController gameController, DialogController dialogController)
     {
@@ -33,9 +35,13 @@ public class DiceAppFrame extends JFrame
         // Initialise info panel
         this.infoPanel = new InfoPanel(gameController);
 
+        // Initialise status bar
+        this.statusBarPanel = new StatusBarPanel(gameController);
+
         // Add components to the window frame
         this.add(toolbar, BorderLayout.NORTH);
         this.add(this.infoPanel, BorderLayout.CENTER);
+        this.add(this.statusBarPanel, BorderLayout.SOUTH);
         this.setVisible(true);
 
         // Print current thread ID
