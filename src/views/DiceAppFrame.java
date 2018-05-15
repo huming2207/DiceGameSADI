@@ -58,4 +58,9 @@ public class DiceAppFrame extends JFrame
     {
         return this.infoPanel;
     }
+
+    public StatusBarPanel getStatusBarPanel()
+    {
+        return this.statusBarPanel;
+    }
 }

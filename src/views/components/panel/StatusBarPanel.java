@@ -21,13 +21,13 @@ public class StatusBarPanel extends JPanel
         this.add(this.rightLabel);
     }
 
-    public void setLeftLabelText(String message)
+    public JLabel getLeftLabel()
     {
-        this.leftLabel.setText(message);
+        return this.leftLabel;
     }
 
-    public void setRightLabelText(String message)
+    public JLabel getRightLabel()
     {
-        this.rightLabel.setText(message);
+        return this.rightLabel;
     }
 }
