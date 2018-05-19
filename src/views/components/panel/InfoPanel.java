@@ -1,7 +1,5 @@
 package views.components.panel;
 
-import controllers.GameController;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,18 +13,13 @@ public class InfoPanel extends JPanel
     private JLabel houseBetLabel = new JLabel("House bet: ");
     private JLabel houseResultLabel = new JLabel("House final result: ");
 
-    private GameController gameController;
-
-    public InfoPanel(GameController gameController)
+    public InfoPanel()
     {
         super(new GridLayout(0, 1));
 
         // Enlarge title labels, i.e. player label and house label
         this.playerLabel.setFont(new Font("Sans-Serif", Font.BOLD, 25));
         this.houseLabel.setFont(new Font("Sans-Serif", Font.BOLD, 25));
-
-        // Set game controller
-        this.gameController = gameController;
 
         // Add all components in
         this.add(this.playerLabel);
@@ -72,11 +65,6 @@ public class InfoPanel extends JPanel
     public JLabel getHouseResultLabel()
     {
         return this.houseResultLabel;
-    }
-
-    public GameController getGameController()
-    {
-        return this.gameController;
     }
 
     public void cleanUp()

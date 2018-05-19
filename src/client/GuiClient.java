@@ -1,6 +1,6 @@
 package client;
 
-import controllers.GameController;
+import views.DiceAppFrame;
 
 public class GuiClient
 {
@@ -16,6 +16,6 @@ public class GuiClient
                     "Also please notice that the dialog box is used in \"About this app\" for a short intro.\n");
         }
 
-        GameController gameController = new GameController();
+        new DiceAppFrame();
     }
 }

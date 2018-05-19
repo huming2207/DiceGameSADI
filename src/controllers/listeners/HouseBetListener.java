@@ -1,7 +1,6 @@
 package controllers.listeners;
 
 import controllers.GameController;
-import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import views.DiceAppFrame;
 
@@ -12,14 +11,12 @@ import java.awt.event.ActionListener;
 public class HouseBetListener implements ActionListener
 {
     private DiceAppFrame appFrame;
-    private GameEngine gameEngine;
     private GameController gameController;
 
     public HouseBetListener(GameController gameController)
     {
         this.appFrame = gameController.getAppFrame();
         this.gameController = gameController;
-        this.gameEngine = gameController.getGameEngine();
     }
 
     @Override
@@ -34,7 +31,7 @@ public class HouseBetListener implements ActionListener
             return;
         }
 
-        for(Player player : this.gameEngine.getAllPlayers()) {
+        for(Player player : this.gameController.getGameEngine().getAllPlayers()) {
             if(player.getRollResult() == null) {
                 JOptionPane.showMessageDialog(
                         null,
@@ -45,6 +42,8 @@ public class HouseBetListener implements ActionListener
             }
         }
 
-        new Thread(() -> this.gameEngine.rollHouse(1, 1000, 100)).start();
+        new Thread(() ->
+                this.gameController.getGameEngine().rollHouse(1, 1000, 100)
+        ).start();
     }
 }

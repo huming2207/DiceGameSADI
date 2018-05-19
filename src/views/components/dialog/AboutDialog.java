@@ -7,10 +7,9 @@ import java.awt.*;
 
 public class AboutDialog extends JDialog
 {
-    public AboutDialog(JFrame parentFrame, DialogController dialogController)
+    public AboutDialog(JFrame parentFrame)
     {
         super(parentFrame, "About this app", true);
-
         this.setLayout(new BorderLayout());
 
         JLabel mainLabel = new JLabel(
@@ -20,6 +19,8 @@ public class AboutDialog extends JDialog
                         "<b>GitHub: </b><a href='https://github.com/huming2207'>github.com/huming2207</a>" +
                         "</html>"
                 , SwingConstants.CENTER);
+
+        DialogController dialogController = new DialogController();
 
         JButton hideButton = new JButton("Okay");
         hideButton.addActionListener(dialogController::handleHideDialogEvent);

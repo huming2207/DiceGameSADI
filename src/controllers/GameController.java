@@ -1,18 +1,13 @@
 package controllers;
 
 import model.common.GameEngineImpl;
-import model.common.SimplePlayer;
 import model.console.ConsoleCallback;
 import model.gui.GuiCallback;
-import model.gui.GuiPlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import views.DiceAppFrame;
 
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.lang.reflect.InvocationTargetException;
 
 public class GameController
 {
@@ -21,23 +16,22 @@ public class GameController
     private Player selectedPlayer;
     private int playerId = 0;
 
-    public GameController()
+    public GameController(DiceAppFrame appFrame)
     {
-        DialogController dialogController = new DialogController();
-
         // Start UI with a new UI thread
-        try {
-            SwingUtilities.invokeAndWait(() -> this.appFrame = new DiceAppFrame(this, dialogController));
-        } catch (InterruptedException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        this.appFrame = appFrame;
 
+        System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
+    }
 
-        // Leave game engine on "main" thread instead
+    /**
+     * Callbacks must be loaded AFTER app frame is loaded, otherwise some UI components will become null.
+     */
+    public void loadCallbacks()
+    {
         this.gameEngine = new GameEngineImpl();
         this.gameEngine.addGameEngineCallback(new GuiCallback(this));
         this.gameEngine.addGameEngineCallback(new ConsoleCallback());
-        System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
     }
 
     public int getPlayerId()

@@ -1,7 +1,6 @@
 package controllers.listeners;
 
 import controllers.GameController;
-import model.interfaces.GameEngine;
 import views.DiceAppFrame;
 
 import javax.swing.*;
@@ -12,13 +11,11 @@ public class BetPlacementListener implements ActionListener
 {
     private DiceAppFrame appFrame;
     private GameController gameController;
-    private GameEngine gameEngine;
 
     public BetPlacementListener(GameController gameController)
     {
         this.appFrame = gameController.getAppFrame();
         this.gameController = gameController;
-        this.gameEngine = this.gameController.getGameEngine();
     }
 
     @Override
@@ -38,9 +35,9 @@ public class BetPlacementListener implements ActionListener
             return;
         }
 
-        this.gameEngine.placeBet(this.gameController.getSelectedPlayer(), bet);
+        this.gameController.getGameEngine().placeBet(this.gameController.getSelectedPlayer(), bet);
         new Thread(() ->
-                this.gameEngine.rollPlayer(
+                this.gameController.getGameEngine().rollPlayer(
                         this.gameController.getSelectedPlayer(), 1, 1000, 100)
         ).start();
     }

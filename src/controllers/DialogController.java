@@ -26,6 +26,6 @@ public class DialogController
 
     private void createAboutDialog(JFrame parentFrame)
     {
-        new AboutDialog(parentFrame, this);
+        new AboutDialog(parentFrame);
     }
 }
