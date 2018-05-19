@@ -24,8 +24,10 @@ public class BetPlacementListener implements ActionListener
         Integer bet = this.gameController.validateInput(
                 this.appFrame.getToolbarPanel().getSetBetTextfield().getText());
 
+        // Stop here if user didn't input a correct number (warning message has already shown)
         if(bet == null) return;
 
+        // It's not possible to place a bet without a player...
         if(this.gameController.getSelectedPlayer() == null) {
             JOptionPane.showMessageDialog(
                     null,
@@ -35,7 +37,10 @@ public class BetPlacementListener implements ActionListener
             return;
         }
 
+        // Place bet via game engine
         this.gameController.getGameEngine().placeBet(this.gameController.getSelectedPlayer(), bet);
+
+        // Roll player is a blocking method, so just create a new thread instead.
         new Thread(() ->
                 this.gameController.getGameEngine().rollPlayer(
                         this.gameController.getSelectedPlayer(), 1, 1000, 100)

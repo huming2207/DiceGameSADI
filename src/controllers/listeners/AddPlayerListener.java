@@ -30,6 +30,7 @@ public class AddPlayerListener implements ActionListener
         Integer initBet  = this.gameController.validateInput(
                 this.appFrame.getToolbarPanel().getInitialBetTextfield().getText());
 
+        // Stop here if user didn't input a correct number (warning message has already shown)
         if(initBet == null) return;
 
         // Create a new player

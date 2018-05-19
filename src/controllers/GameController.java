@@ -2,7 +2,7 @@ package controllers;
 
 import model.common.GameEngineImpl;
 import model.console.ConsoleCallback;
-import model.gui.GuiCallback;
+import model.gui.GameEngineCallbackGUI;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import views.DiceAppFrame;
@@ -18,7 +18,6 @@ public class GameController
 
     public GameController(DiceAppFrame appFrame)
     {
-        // Start UI with a new UI thread
         this.appFrame = appFrame;
 
         System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
@@ -30,7 +29,7 @@ public class GameController
     public void loadCallbacks()
     {
         this.gameEngine = new GameEngineImpl();
-        this.gameEngine.addGameEngineCallback(new GuiCallback(this));
+        this.gameEngine.addGameEngineCallback(new GameEngineCallbackGUI(this));
         this.gameEngine.addGameEngineCallback(new ConsoleCallback());
     }
 

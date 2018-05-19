@@ -22,6 +22,7 @@ public class HouseBetListener implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        // If there is no player selected, then something must went wrong in the user side.
         if(this.gameController.getSelectedPlayer() == null) {
             JOptionPane.showMessageDialog(
                     null,
@@ -31,6 +32,7 @@ public class HouseBetListener implements ActionListener
             return;
         }
 
+        // Check if all player has placed their bet
         for(Player player : this.gameController.getGameEngine().getAllPlayers()) {
             if(player.getRollResult() == null) {
                 JOptionPane.showMessageDialog(
@@ -42,6 +44,7 @@ public class HouseBetListener implements ActionListener
             }
         }
 
+        // Roll house is a blocking method, so just create a new thread instead.
         new Thread(() ->
                 this.gameController.getGameEngine().rollHouse(1, 1000, 100)
         ).start();

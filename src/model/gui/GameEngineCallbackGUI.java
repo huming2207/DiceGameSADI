@@ -10,14 +10,14 @@ import views.components.panel.StatusBarPanel;
 
 import javax.swing.*;
 
-public class GuiCallback implements GameEngineCallback
+public class GameEngineCallbackGUI implements GameEngineCallback
 {
 
     private GameController gameController;
     private InfoPanel infoPanel;
     private StatusBarPanel statusBarPanel;
 
-    public GuiCallback(GameController gameController)
+    public GameEngineCallbackGUI(GameController gameController)
     {
         this.gameController = gameController;
         this.infoPanel = gameController.getAppFrame().getInfoPanel();

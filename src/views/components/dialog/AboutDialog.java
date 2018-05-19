@@ -12,6 +12,7 @@ public class AboutDialog extends JDialog
         super(parentFrame, "About this app", true);
         this.setLayout(new BorderLayout());
 
+        // Use HTML here for arranging the text...
         JLabel mainLabel = new JLabel(
                 "<html>" +
                         "<p>This app is written by Ming Hu (s3554025) for SADI Assignment 2.</p><br>" +
@@ -22,6 +23,7 @@ public class AboutDialog extends JDialog
 
         DialogController dialogController = new DialogController();
 
+        // Create "Okay button"
         JButton hideButton = new JButton("Okay");
         hideButton.addActionListener(dialogController::handleHideDialogEvent);
 
