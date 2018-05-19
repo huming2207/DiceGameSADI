@@ -1,7 +1,10 @@
 package views.components.menubar;
 
-import controllers.DialogController;
-import controllers.GameController;
+import controllers.*;
+import controllers.listeners.AddPlayerListener;
+import controllers.listeners.BetPlacementListener;
+import controllers.listeners.HouseBetListener;
+import controllers.listeners.QuitEventHandler;
 
 import javax.swing.*;
 import java.awt.event.InputEvent;
@@ -21,25 +24,25 @@ public class MainMenuBar extends JMenuBar
         // "File" menu section:
         // "Add player" section and shortcut key
         JMenuItem addPlayerItem = new JMenuItem("Add player", KeyEvent.VK_A);
-        addPlayerItem.addActionListener(gameController::handleAddPlayerRequest);
+        addPlayerItem.addActionListener(new AddPlayerListener(gameController));
         addPlayerItem.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 
         // "Place bet" section and shortcut key
         JMenuItem placeBetItem = new JMenuItem("Place bet", KeyEvent.VK_P);
-        placeBetItem.addActionListener(gameController::handleBetPlacementRequest);
+        placeBetItem.addActionListener(new BetPlacementListener(gameController));
         placeBetItem.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 
         // "House bet" section and shortcut key
         JMenuItem houseBetItem = new JMenuItem("House bet", KeyEvent.VK_H);
-        houseBetItem.addActionListener(gameController::handleHouseBetRequest);
+        houseBetItem.addActionListener(new HouseBetListener(gameController));
         houseBetItem.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 
         // "Quit" section and shortcut key
         JMenuItem quitItem = new JMenuItem("Quit", KeyEvent.VK_Q);
-        quitItem.addActionListener(gameController::handleQuitEvent);
+        quitItem.addActionListener(new QuitEventHandler());
         quitItem.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_Q, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 

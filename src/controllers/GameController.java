@@ -17,7 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 public class GameController
 {
     private DiceAppFrame appFrame;
-    private final GameEngine gameEngine;
+    private GameEngine gameEngine;
     private Player selectedPlayer;
     private int playerId = 0;
 
@@ -40,91 +40,39 @@ public class GameController
         System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
     }
 
-
-    public void handleAddPlayerRequest(ActionEvent event)
+    public int getPlayerId()
     {
-        String playerName = this.appFrame.getToolbarPanel().getNameTextfield().getText();
-
-        Integer initBet;
-
-        if((initBet = validateInput(this.appFrame.getToolbarPanel().getInitialBetTextfield().getText())) == null)
-            return;
-
-        // Create a new player
-        SimplePlayer player = new GuiPlayer(Integer.toString(this.playerId), playerName, initBet);
-        this.gameEngine.addPlayer(player);
-
-        // Add to combo box
-        SwingUtilities.invokeLater(() -> this.appFrame.getToolbarPanel().getSelectionComboBox().addItem(player));
-        System.out.println("Added player: " + player.toString());
-
-        // Increase player ID every time after use
-        this.playerId += 1;
+        return this.playerId;
     }
 
-    public void handleBetPlacementRequest(ActionEvent event)
+    public void setPlayerId(int id)
     {
-        Integer bet;
-
-        if((bet = validateInput(this.appFrame.getToolbarPanel().getSetBetTextfield().getText())) == null)
-            return;
-
-        if(this.selectedPlayer == null) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "You didn't select a correct player!",
-                    "Selection error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        this.gameEngine.placeBet(this.selectedPlayer, bet);
-        new Thread(() -> this.gameEngine.rollPlayer(selectedPlayer, 1, 1000, 100))
-                .start();
+        this.playerId = id;
     }
 
-    public void handleHouseBetRequest(ActionEvent event)
+    public void setGameEngine(GameEngine gameEngine)
     {
-        if(this.selectedPlayer == null) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "House bet must comes after at least one player bet",
-                    "Selection error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        for(Player player : this.gameEngine.getAllPlayers()) {
-            if(player.getRollResult() == null) {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "At least one player(s) haven't placed bet yet, please check again",
-                        "Selection error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-
-        new Thread(() -> this.gameEngine.rollHouse(1, 1000, 100)).start();
+        this.gameEngine = gameEngine;
     }
 
-    public void handleComboBoxSelection(ActionEvent actionEvent)
+    public GameEngine getGameEngine()
     {
-        // Clean up the label
-        // Here I do not consider the concurrency issue as required in assignment spec
-        this.appFrame.getInfoPanel().cleanUp();
-
-        // Here I assume the player is not null, because only valid player will be shown in the combo box
-        this.selectedPlayer = ((GuiPlayer)this.appFrame.getToolbarPanel().getSelectionComboBox().getSelectedItem());
-
-        // Update balance label
-        JLabel playerBalanceLabel = this.getAppFrame().getInfoPanel().getPlayerBalanceLabel();
-        playerBalanceLabel.setText(String.format("Balance: %d", this.selectedPlayer.getPoints()));
+        return this.gameEngine;
     }
 
-    public void handleQuitEvent(ActionEvent actionEvent)
+    public void setAppFrame(DiceAppFrame appFrame)
     {
-        System.exit(0);
+        this.appFrame = appFrame;
+    }
+
+    public Player getSelectedPlayer()
+    {
+        return selectedPlayer;
+    }
+
+    public void setSelectedPlayer(Player selectedPlayer)
+    {
+        this.selectedPlayer = selectedPlayer;
     }
 
     public DiceAppFrame getAppFrame()
@@ -137,7 +85,7 @@ public class GameController
         return this.selectedPlayer;
     }
 
-    private Integer validateInput(String textBoxInput)
+    public Integer validateInput(String textBoxInput)
     {
         int initBet = 0;
 
