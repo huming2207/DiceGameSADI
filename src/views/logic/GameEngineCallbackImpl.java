@@ -1,4 +1,4 @@
-package model.console;
+package views.logic;
 
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
@@ -16,12 +16,12 @@ import java.util.logging.*;
  * @see model.interfaces.GameEngineCallback
  * 
  */
-public class ConsoleCallback implements GameEngineCallback
+public class GameEngineCallbackImpl implements GameEngineCallback
 {
 	private Logger logger = Logger.getLogger("assignment1");
 
 
-	public ConsoleCallback()
+	public GameEngineCallbackImpl()
 	{
 		// FINE shows rolling output, INFO only shows result
 		logger.setLevel(Level.FINE);

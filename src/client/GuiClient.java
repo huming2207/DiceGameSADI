@@ -2,6 +2,8 @@ package client;
 
 import views.DiceAppFrame;
 
+import javax.swing.*;
+
 public class GuiClient
 {
     public static void main(String[] args)
@@ -16,6 +18,6 @@ public class GuiClient
                     "Also please notice that the dialog box is used in \"About this app\" for a short intro.\n");
         }
 
-        new DiceAppFrame();
+        SwingUtilities.invokeLater(DiceAppFrame::new);
     }
 }

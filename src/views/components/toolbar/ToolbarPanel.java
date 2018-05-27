@@ -1,10 +1,10 @@
 package views.components.toolbar;
 
-import controllers.*;
 import controllers.listeners.AddPlayerListener;
 import controllers.listeners.BetPlacementListener;
 import controllers.listeners.ComboBoxSelectionListener;
 import controllers.listeners.HouseBetListener;
+import model.GameStatus;
 import model.interfaces.Player;
 
 import javax.swing.*;
@@ -20,7 +20,7 @@ public class ToolbarPanel extends JPanel
     private JButton addPlayerButton = new JButton("Add player");
     private JButton houseButton = new JButton("House bet");
 
-    public ToolbarPanel(GameController gameController)
+    public ToolbarPanel(GameStatus gameStatus)
     {
         // User border layout to separate two parts of the toolbar
         super(new FlowLayout());
@@ -46,10 +46,10 @@ public class ToolbarPanel extends JPanel
         this.selectionComboBox.setToolTipText("Select a player here");
 
         // Add listener for buttons
-        this.addPlayerButton.addActionListener(new AddPlayerListener(gameController));
-        this.placeBetButton.addActionListener(new BetPlacementListener(gameController));
-        this.houseButton.addActionListener(new HouseBetListener(gameController));
-        this.selectionComboBox.addActionListener(new ComboBoxSelectionListener(gameController));
+        this.addPlayerButton.addActionListener(new AddPlayerListener(gameStatus));
+        this.placeBetButton.addActionListener(new BetPlacementListener(gameStatus));
+        this.houseButton.addActionListener(new HouseBetListener(gameStatus));
+        this.selectionComboBox.addActionListener(new ComboBoxSelectionListener(gameStatus));
 
         // Add components
         // player selection

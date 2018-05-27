@@ -1,8 +1,8 @@
 package client;
 
-import model.console.ConsoleCallback;
-import model.common.GameEngineImpl;
-import model.common.SimplePlayer;
+import views.logic.GameEngineCallbackImpl;
+import model.GameEngineImpl;
+import model.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
@@ -28,9 +28,9 @@ public class SimpleTestClient
                 new SimplePlayer("2", "The Loser", 500)
         };
 
-        // register the callback for notifications (all logging output is done by ConsoleCallback)
-        // see provided skeleton class ConsoleCallback.java
-        gameEngine.addGameEngineCallback(new ConsoleCallback());
+        // register the callback for notifications (all logging output is done by GameEngineCallbackImpl)
+        // see provided skeleton class GameEngineCallbackImpl.java
+        gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
 
         // main loop to add players place a bet and roll
         for (Player player : players) {

@@ -1,22 +1,21 @@
-package controllers;
+package model;
 
-import model.common.GameEngineImpl;
-import model.console.ConsoleCallback;
-import model.gui.GameEngineCallbackGUI;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import views.DiceAppFrame;
+import views.logic.GameEngineCallbackGUI;
+import views.logic.GameEngineCallbackImpl;
 
 import javax.swing.*;
 
-public class GameController
+public class GameStatus
 {
     private DiceAppFrame appFrame;
     private GameEngine gameEngine;
     private Player selectedPlayer;
     private int playerId = 0;
 
-    public GameController(DiceAppFrame appFrame)
+    public GameStatus(DiceAppFrame appFrame)
     {
         this.appFrame = appFrame;
 
@@ -30,7 +29,7 @@ public class GameController
     {
         this.gameEngine = new GameEngineImpl();
         this.gameEngine.addGameEngineCallback(new GameEngineCallbackGUI(this));
-        this.gameEngine.addGameEngineCallback(new ConsoleCallback());
+        this.gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
     }
 
     public int getPlayerId()

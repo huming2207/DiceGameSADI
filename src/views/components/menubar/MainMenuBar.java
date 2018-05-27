@@ -5,6 +5,7 @@ import controllers.listeners.AddPlayerListener;
 import controllers.listeners.BetPlacementListener;
 import controllers.listeners.HouseBetListener;
 import controllers.listeners.QuitEventHandler;
+import model.GameStatus;
 
 import javax.swing.*;
 import java.awt.event.InputEvent;
@@ -12,7 +13,7 @@ import java.awt.event.KeyEvent;
 
 public class MainMenuBar extends JMenuBar
 {
-    public MainMenuBar(GameController gameController, DialogController dialogController)
+    public MainMenuBar(GameStatus gameStatus, DialogController dialogController)
     {
         // Top level menu bar sections
         JMenu playerMenu = new JMenu("Player");
@@ -24,19 +25,19 @@ public class MainMenuBar extends JMenuBar
         // "File" menu section:
         // "Add player" section and shortcut key
         JMenuItem addPlayerItem = new JMenuItem("Add player", KeyEvent.VK_A);
-        addPlayerItem.addActionListener(new AddPlayerListener(gameController));
+        addPlayerItem.addActionListener(new AddPlayerListener(gameStatus));
         addPlayerItem.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 
         // "Place bet" section and shortcut key
         JMenuItem placeBetItem = new JMenuItem("Place bet", KeyEvent.VK_P);
-        placeBetItem.addActionListener(new BetPlacementListener(gameController));
+        placeBetItem.addActionListener(new BetPlacementListener(gameStatus));
         placeBetItem.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 
         // "House bet" section and shortcut key
         JMenuItem houseBetItem = new JMenuItem("House bet", KeyEvent.VK_H);
-        houseBetItem.addActionListener(new HouseBetListener(gameController));
+        houseBetItem.addActionListener(new HouseBetListener(gameStatus));
         houseBetItem.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 

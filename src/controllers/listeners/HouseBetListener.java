@@ -1,6 +1,6 @@
 package controllers.listeners;
 
-import controllers.GameController;
+import model.GameStatus;
 import model.interfaces.Player;
 import views.DiceAppFrame;
 
@@ -11,19 +11,19 @@ import java.awt.event.ActionListener;
 public class HouseBetListener implements ActionListener
 {
     private DiceAppFrame appFrame;
-    private GameController gameController;
+    private GameStatus gameStatus;
 
-    public HouseBetListener(GameController gameController)
+    public HouseBetListener(GameStatus gameStatus)
     {
-        this.appFrame = gameController.getAppFrame();
-        this.gameController = gameController;
+        this.appFrame = gameStatus.getAppFrame();
+        this.gameStatus = gameStatus;
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
         // If there is no player selected, then something must went wrong in the user side.
-        if(this.gameController.getSelectedPlayer() == null) {
+        if(this.gameStatus.getSelectedPlayer() == null) {
             JOptionPane.showMessageDialog(
                     null,
                     "House bet must comes after at least one player bet",
@@ -33,7 +33,7 @@ public class HouseBetListener implements ActionListener
         }
 
         // Check if all player has placed their bet
-        for(Player player : this.gameController.getGameEngine().getAllPlayers()) {
+        for(Player player : this.gameStatus.getGameEngine().getAllPlayers()) {
             if(player.getRollResult() == null) {
                 JOptionPane.showMessageDialog(
                         null,
@@ -46,7 +46,7 @@ public class HouseBetListener implements ActionListener
 
         // Roll house is a blocking method, so just create a new thread instead.
         new Thread(() ->
-                this.gameController.getGameEngine().rollHouse(1, 1000, 100)
+                this.gameStatus.getGameEngine().rollHouse(1, 1000, 100)
         ).start();
     }
 }

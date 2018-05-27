@@ -1,6 +1,6 @@
-package model.gui;
+package views.logic;
 
-import controllers.GameController;
+import model.GameStatus;
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
 import model.interfaces.GameEngineCallback;
@@ -13,20 +13,21 @@ import javax.swing.*;
 public class GameEngineCallbackGUI implements GameEngineCallback
 {
 
-    private GameController gameController;
+    private GameStatus gameStatus;
     private InfoPanel infoPanel;
     private StatusBarPanel statusBarPanel;
 
-    public GameEngineCallbackGUI(GameController gameController)
+    public GameEngineCallbackGUI(GameStatus gameStatus)
     {
-        this.gameController = gameController;
-        this.infoPanel = gameController.getAppFrame().getInfoPanel();
-        this.statusBarPanel = gameController.getAppFrame().getStatusBarPanel();
+        this.gameStatus = gameStatus;
+        this.infoPanel = gameStatus.getAppFrame().getInfoPanel();
+        this.statusBarPanel = gameStatus.getAppFrame().getStatusBarPanel();
     }
 
     @Override
     public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
     {
+        System.out.println(String.format("Callback thread ID: %d", Thread.currentThread().getId()));
         this.setTextToLabel(this.statusBarPanel.getLeftLabel(),
                 String.format("Player betting: %s", player));
 
@@ -37,6 +38,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback
     @Override
     public void result(Player player, DicePair result, GameEngine gameEngine)
     {
+        System.out.println(String.format("Callback thread ID: %d", Thread.currentThread().getId()));
         this.setTextToLabel(this.statusBarPanel.getLeftLabel(),
                 String.format("Player done: %s", player));
 
@@ -50,6 +52,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback
     @Override
     public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine)
     {
+        System.out.println(String.format("Callback thread ID: %d", Thread.currentThread().getId()));
         this.setTextToLabel(this.statusBarPanel.getLeftLabel(),"House betting...");
 
         this.appendTextToLabel(this.infoPanel.getHouseBetLabel(), String.format("%d+%d=%d;; ",
@@ -59,13 +62,14 @@ public class GameEngineCallbackGUI implements GameEngineCallback
     @Override
     public void houseResult(DicePair result, GameEngine gameEngine)
     {
+        System.out.println(String.format("Callback thread ID: %d", Thread.currentThread().getId()));
         this.setTextToLabel(this.statusBarPanel.getLeftLabel(),"House done");
 
         this.appendTextToLabel(this.infoPanel.getHouseResultLabel(), String.format("%d+%d=%d",
                 result.getDice1(), result.getDice2(), result.getDice1() + result.getDice2()));
 
         this.setTextToLabel(this.infoPanel.getPlayerBalanceLabel(), String.format("Balance: %d",
-                this.gameController.getCurrentPlayer().getPoints()));
+                this.gameStatus.getCurrentPlayer().getPoints()));
 
         this.setTextToLabel(this.statusBarPanel.getRightLabel(),
                 String.format("House result: %d", result.getDice1() + result.getDice2()));

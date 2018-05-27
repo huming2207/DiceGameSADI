@@ -1,7 +1,7 @@
 package views;
 
 import controllers.DialogController;
-import controllers.GameController;
+import model.GameStatus;
 import views.components.menubar.MainMenuBar;
 import views.components.panel.InfoPanel;
 import views.components.panel.StatusBarPanel;
@@ -26,14 +26,14 @@ public class DiceAppFrame extends JFrame
         this.setLayout(new BorderLayout());
 
         // Initialise controllers
-        GameController gameController = new GameController(this);
+        GameStatus gameStatus = new GameStatus(this);
         DialogController dialogController = new DialogController();
 
         // Initialise menu bar
-        this.setJMenuBar(new MainMenuBar(gameController, dialogController));
+        this.setJMenuBar(new MainMenuBar(gameStatus, dialogController));
 
         // Initialise toolbar
-        this.toolbarPanel = new ToolbarPanel(gameController);
+        this.toolbarPanel = new ToolbarPanel(gameStatus);
         DiceToolbar toolbar = new DiceToolbar(this.toolbarPanel);
 
         // Initialise info panel
@@ -52,7 +52,7 @@ public class DiceAppFrame extends JFrame
         System.out.println(String.format("UI Thread ID: %d", Thread.currentThread().getId()));
 
         // Load game engine callbacks
-        gameController.loadCallbacks();
+        gameStatus.loadCallbacks();
     }
 
 

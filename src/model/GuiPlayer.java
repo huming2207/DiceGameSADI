@@ -1,6 +1,4 @@
-package model.gui;
-
-import model.common.SimplePlayer;
+package model;
 
 /*
     The main differencce between GuiPlayer and SimplePlayer is GuiPlayer shorten return value of

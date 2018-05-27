@@ -1,8 +1,7 @@
 package controllers.listeners;
 
-import controllers.GameController;
-import model.gui.GuiPlayer;
-import model.interfaces.GameEngine;
+import model.GameStatus;
+import model.GuiPlayer;
 import views.DiceAppFrame;
 
 import javax.swing.*;
@@ -12,12 +11,12 @@ import java.awt.event.ActionListener;
 public class ComboBoxSelectionListener implements ActionListener
 {
     private DiceAppFrame appFrame;
-    private GameController gameController;
+    private GameStatus gameStatus;
 
-    public ComboBoxSelectionListener(GameController gameController)
+    public ComboBoxSelectionListener(GameStatus gameStatus)
     {
-        this.gameController = gameController;
-        this.appFrame = gameController.getAppFrame();
+        this.gameStatus = gameStatus;
+        this.appFrame = gameStatus.getAppFrame();
     }
 
     @Override
@@ -28,11 +27,11 @@ public class ComboBoxSelectionListener implements ActionListener
         this.appFrame.getInfoPanel().cleanUp();
 
         // Here I assume the player is not null, because only valid player will be shown in the combo box
-        this.gameController.setSelectedPlayer(
+        this.gameStatus.setSelectedPlayer(
                 (GuiPlayer)this.appFrame.getToolbarPanel().getSelectionComboBox().getSelectedItem());
 
         // Update balance label
         JLabel playerBalanceLabel = this.appFrame.getInfoPanel().getPlayerBalanceLabel();
-        playerBalanceLabel.setText(String.format("Balance: %d", this.gameController.getSelectedPlayer().getPoints()));
+        playerBalanceLabel.setText(String.format("Balance: %d", this.gameStatus.getSelectedPlayer().getPoints()));
     }
 }
