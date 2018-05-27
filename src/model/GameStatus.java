@@ -18,8 +18,6 @@ public class GameStatus
     public GameStatus(DiceAppFrame appFrame)
     {
         this.appFrame = appFrame;
-
-        System.out.println(String.format("Main thread ID: %d", Thread.currentThread().getId()));
     }
 
     /**

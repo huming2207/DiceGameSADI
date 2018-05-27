@@ -48,9 +48,6 @@ public class DiceAppFrame extends JFrame
         this.add(this.statusBarPanel, BorderLayout.SOUTH);
         this.setVisible(true);
 
-        // Print current thread ID
-        System.out.println(String.format("UI Thread ID: %d", Thread.currentThread().getId()));
-
         // Load game engine callbacks
         gameStatus.loadCallbacks();
     }

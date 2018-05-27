@@ -2,7 +2,6 @@ package controllers.listeners;
 
 import model.GameStatus;
 import model.interfaces.Player;
-import views.DiceAppFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,12 +9,10 @@ import java.awt.event.ActionListener;
 
 public class HouseBetListener implements ActionListener
 {
-    private DiceAppFrame appFrame;
     private GameStatus gameStatus;
 
     public HouseBetListener(GameStatus gameStatus)
     {
-        this.appFrame = gameStatus.getAppFrame();
         this.gameStatus = gameStatus;
     }
 

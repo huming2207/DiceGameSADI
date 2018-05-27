@@ -27,7 +27,6 @@ public class GameEngineCallbackGUI implements GameEngineCallback
     @Override
     public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
     {
-        System.out.println(String.format("Callback thread ID: %d", Thread.currentThread().getId()));
         this.setTextToLabel(this.statusBarPanel.getLeftLabel(),
                 String.format("Player betting: %s", player));
 
@@ -38,7 +37,6 @@ public class GameEngineCallbackGUI implements GameEngineCallback
     @Override
     public void result(Player player, DicePair result, GameEngine gameEngine)
     {
-        System.out.println(String.format("Callback thread ID: %d", Thread.currentThread().getId()));
         this.setTextToLabel(this.statusBarPanel.getLeftLabel(),
                 String.format("Player done: %s", player));
 
@@ -52,7 +50,6 @@ public class GameEngineCallbackGUI implements GameEngineCallback
     @Override
     public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine)
     {
-        System.out.println(String.format("Callback thread ID: %d", Thread.currentThread().getId()));
         this.setTextToLabel(this.statusBarPanel.getLeftLabel(),"House betting...");
 
         this.appendTextToLabel(this.infoPanel.getHouseBetLabel(), String.format("%d+%d=%d;; ",
@@ -62,7 +59,6 @@ public class GameEngineCallbackGUI implements GameEngineCallback
     @Override
     public void houseResult(DicePair result, GameEngine gameEngine)
     {
-        System.out.println(String.format("Callback thread ID: %d", Thread.currentThread().getId()));
         this.setTextToLabel(this.statusBarPanel.getLeftLabel(),"House done");
 
         this.appendTextToLabel(this.infoPanel.getHouseResultLabel(), String.format("%d+%d=%d",
